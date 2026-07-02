@@ -69,13 +69,17 @@
 @foreach($featuredProducts as $product)
 <div class="product-card">
 @if($product->image)
-<img src='/IMAGE/{{ $product->image }}' alt='{{ $product->name }}' style='width:100%;height:190px;object-fit:cover;display:block'>
+<img src='{{ $product->images[0] ?? '' }}' alt='{{ $product->name }}' style='width:100%;height:190px;object-fit:cover;display:block' onerror="this.src='/IMAGE/SUPER.jpeg'">
 @else
 <div style="width:100%;height:190px;background:#EDE5D2;display:flex;align-items:center;justify-content:center"><svg width="36" height="36" fill="none" stroke="#C4975A" stroke-width="1" viewBox="0 0 24 24" opacity=".35"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div>
 @endif
 <div style="padding:14px"><p style="font-weight:600;font-size:13px;color:#0E1508;margin:0 0 5px">{{ $product->name }}</p>
 <p style="font-size:13px;font-weight:700;color:#C4975A;margin:0 0 12px">Rp {{ number_format($product->price,0,',','.') }}</p>
-<a href='{{ route('product') }}' style='display:block;text-align:center;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:9px;border-radius:7px;background:#0E1508;color:#fff;text-decoration:none'>Lihat Detail</a>
+<form method='POST' action='" + B + " route('cart.add') " + E + "'>
+@csrf
+<input type='hidden' name='product_id' value='" + B + " $product->id " + E + "'>
+<button type='submit' style='width:100%;display:block;text-align:center;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:10px;border-radius:7px;background:#C4975A;color:#0E1508;border:none;cursor:pointer'>Tambah ke Keranjang</button>
+</form>
 </div></div>
 @endforeach
 </div>

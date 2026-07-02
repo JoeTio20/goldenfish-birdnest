@@ -54,7 +54,7 @@
           @csrf
           <input type="hidden" name="product_id" value="{{ $p->id }}">
           <button type="submit"
-            class="w-full bg-charcoal text-cream text-[11px] tracking-[.1em] uppercase py-2.5 hover:opacity-80 transition">
+            style="width:100%;background:#C4975A;color:#0E1508;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:10px 0;border:none;cursor:pointer;font-weight:600;border-radius:6px;transition:opacity .2s" onmouseover="this.style.opacity=.85" onmouseout="this.style.opacity=1">
             {{ __('messages.add_cart') }}
           </button>
         </form>

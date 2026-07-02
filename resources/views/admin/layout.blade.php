@@ -40,7 +40,7 @@ body{background:#0C1A0E;font-family:'Inter',sans-serif;margin:0;color:#E0D9CC;ov
 <aside id="sidebar" class="flex-col">
   <div class="px-5 py-5" style="border-bottom:1px solid rgba(255,255,255,.06)">
     <p class="serif text-[16px] font-bold text-white tracking-wide mb-0.5">Admin Panel</p>
-    <p class="text-[11px]" style="color:rgba(255,255,255,.26)">Halo, {{ auth('admin')->user()->name ?? 'Admin' }} 👋</p>
+    <p class="text-[11px]" style="color:rgba(255,255,255,.26)">Halo, {{ session('admin_name', 'Admin') }} 👋</p>
   </div>
   <nav class="flex-1 py-3">
     <p class="px-5 text-[9px] font-bold tracking-[.2em] uppercase mb-2" style="color:rgba(255,255,255,.16)">Menu</p>
@@ -56,9 +56,9 @@ body{background:#0C1A0E;font-family:'Inter',sans-serif;margin:0;color:#E0D9CC;ov
   </nav>
   <div class="py-4" style="border-top:1px solid rgba(255,255,255,.06)">
     <div class="flex items-center gap-3 px-4 py-3 mx-3 rounded-xl" style="background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05)">
-      <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0" style="background:#C4975A;color:#070D08">{{ substr(auth('admin')->user()->name ?? 'A', 0, 1) }}</div>
+      <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0" style="background:#C4975A;color:#070D08">{{ substr(session('admin_name', 'Admin'), 0, 1) }}</div>
       <div class="min-w-0 flex-1">
-        <p class="text-[12px] font-semibold text-white truncate">{{ auth('admin')->user()->name ?? 'Admin' }}</p>
+        <p class="text-[12px] font-semibold text-white truncate">{{ session('admin_name', 'Admin') }}</p>
         <form method="POST" action="{{ route('admin.logout') }}">@csrf<button type="submit" class="text-[10px] text-red-400 hover:text-red-300 font-semibold uppercase tracking-wide bg-transparent border-none cursor-pointer p-0">Logout</button></form>
       </div>
     </div>
