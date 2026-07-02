@@ -131,4 +131,18 @@ class AdminProductController extends Controller
         $product->delete();
         return redirect()->route('admin.products.index')->with('success', 'Produk berhasil dihapus!');
     }
+
+    public function toggleFeatured(Product $product)
+    {
+        // Max 4 featured products
+        if (!$product->is_featured && Product::where('is_featured', true)->count() >= 4) {
+            return redirect()->route('admin.products.index')
+                ->with('error', 'Maksimal 4 produk unggulan! Nonaktifkan salah satu dulu.');
+        }
+        $product->update(['is_featured' => !$product->is_featured]);
+        $status = $product->is_featured ? 'ditambahkan ke' : 'dihapus dari';
+        return redirect()->route('admin.products.index')
+            ->with('success', $product->name . ' berhasil ' . $status . ' produk unggulan!');
+    }
+
 }

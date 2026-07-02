@@ -20,7 +20,7 @@
   <div style="position:absolute;inset:0;background-image:url('/IMAGE/SUPER.jpeg');background-size:cover;background-position:center;opacity:.5"></div>
   <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,14,24,.78) 0%,rgba(8,14,24,.28) 50%,rgba(8,14,24,.82) 100%)"></div>
   <div style="position:relative;z-index:2;text-align:center;padding:0 20px;max-width:680px">
-    <p style="font-size:14px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:#6BAED6;margin:0 0 24px;text-shadow:0 0 30px rgba(107,174,214,.5)">Dari Alam untuk Kualitas</p>
+    <p style="font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:#6BAED6;margin:0 0 20px">Dari Alam untuk Kualitas</p>
     <h1 class="serif" style="font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.08;color:#fff;font-weight:700;margin:0 0 24px">Kemurnian dalam<br>Setiap Sarang</h1>
     <p style="font-size:15px;color:rgba(255,255,255,.58);max-width:440px;margin:0 auto 40px;line-height:1.9">Dipanen dengan penuh kehati-hatian dari sarang walet pilihan untuk menjaga kualitas terbaik.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
@@ -44,41 +44,23 @@
 @endfor
 </div></div>
 
-<section style="background:#0D1B2A"><div class="max-w-5xl mx-auto"><div class="grid grid-cols-2 md:grid-cols-4">
-<div class="stat-card"><p class="serif" style="font-size:2.4rem;font-weight:700;color:#6BAED6;margin:0 0 4px">10+</p><p style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28);margin:0">Tahun Pengalaman</p></div>
-<div class="stat-card"><p class="serif" style="font-size:2.4rem;font-weight:700;color:#6BAED6;margin:0 0 4px">50+</p><p style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28);margin:0">Varian Produk</p></div>
-<div class="stat-card"><p class="serif" style="font-size:2.4rem;font-weight:700;color:#6BAED6;margin:0 0 4px">1K+</p><p style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28);margin:0">Pelanggan Puas</p></div>
-<div class="stat-card"><p class="serif" style="font-size:2.4rem;font-weight:700;color:#6BAED6;margin:0 0 4px">15+</p><p style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28);margin:0">Kota Pengiriman</p></div>
-</div></div></section>
-
-<section style="background:#F7F9FB;padding:90px 20px"><div class="max-w-6xl mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
-<div><img src="/IMAGE/PATAH BESAR.jpeg" alt="" style="width:100%;border-radius:14px;aspect-ratio:4/5;object-fit:cover;display:block"></div>
-<div>
-<p style="font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#6BAED6;margin:0 0 16px">Tentang Kami</p>
-<h2 class="serif" style="font-size:clamp(2rem,4vw,2.8rem);line-height:1.2;color:#0D1B2A;font-weight:700;margin:0 0 22px">Sarang Pilihan,<br>Kualitas Terjamin</h2>
-<p style="font-size:14px;color:#4A6375;line-height:1.95;margin:0 0 14px">Kami menghadirkan sarang burung walet premium yang dipanen langsung dari sumber terpercaya. Setiap produk melalui proses pembersihan ketat tanpa bahan kimia tambahan.</p>
-<p style="font-size:14px;color:#4A6375;line-height:1.95;margin:0 0 34px">Dengan pengalaman lebih dari satu dekade, kami memastikan setiap sarang yang sampai ke tangan Anda adalah yang terbaik.</p>
-<a href='{{ route('philosophy') }}' style='font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#0D1B2A;text-decoration:none;border-bottom:1.5px solid #6BAED6;padding-bottom:3px'>Baca Filosofi Kami &rarr;</a>
-</div></div></div></section>
-
-<section style="background:#EDF4F8;padding:90px 20px"><div class="max-w-6xl mx-auto">
-<div style="text-align:center;margin-bottom:52px"><p style="font-size:11px;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:#6BAED6;margin:0 0 12px">Koleksi Kami</p>
-<h2 class="serif" style="font-size:clamp(2rem,4vw,2.8rem);color:#0D1B2A;font-weight:700;margin:0">Produk Unggulan</h2></div>
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<section style="background:#0D1B2A"><div class="max-w-5xl mx-auto"><style>
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:767px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:479px){.feat-grid{grid-template-columns:1fr}}
+</style>
+<div class="feat-grid">
 @foreach($featuredProducts as $product)
-<div class="product-card">
-@if($product->image)
-<img src='{{ $product->images[0] ?? '' }}' alt='{{ $product->name }}' style='width:100%;height:190px;object-fit:cover;display:block' onerror="this.src='/IMAGE/SUPER.jpeg'">
-@else
-<div style="width:100%;height:190px;background:#EDE5D2;display:flex;align-items:center;justify-content:center"><svg width="36" height="36" fill="none" stroke="#6BAED6" stroke-width="1" viewBox="0 0 24 24" opacity=".35"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg></div>
-@endif
-<div style="padding:14px"><p style="font-weight:600;font-size:13px;color:#0D1B2A;margin:0 0 5px">{{ $product->name }}</p>
+<div style="background:#fff;border-radius:12px;overflow:hidden;border:1px solid rgba(107,174,214,.12);transition:transform .2s,box-shadow .2s" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 28px rgba(13,27,42,.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+<div style="aspect-ratio:1;overflow:hidden;background:#EDF4F8">
+<img src="{{ $product->thumbnail }}" alt="{{ $product->name }}" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.src='/IMAGE/SUPER.jpeg'">
+</div>
+<div style="padding:14px 14px 16px">
+<p style="font-weight:600;font-size:13px;color:#1C2B3A;margin:0 0 4px">{{ $product->name }}</p>
 <p style="font-size:13px;font-weight:700;color:#6BAED6;margin:0 0 12px">Rp {{ number_format($product->price,0,',','.') }}</p>
-<form method='POST' action='" + B + " route('cart.add') " + E + "'>
-@csrf
-<input type='hidden' name='product_id' value='" + B + " $product->id " + E + "'>
-<button type='submit' style='width:100%;display:block;text-align:center;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:10px;border-radius:7px;background:#6BAED6;color:#0D1B2A;border:none;cursor:pointer'>Tambah ke Keranjang</button>
+<form method="POST" action="{{ route('cart.add') }}">@csrf
+<input type="hidden" name="product_id" value="{{ $product->id }}">
+<button type="submit" style="width:100%;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:10px;border-radius:7px;background:#6BAED6;color:#0D1B2A;border:none;cursor:pointer">Tambah ke Keranjang</button>
 </form>
 </div></div>
 @endforeach

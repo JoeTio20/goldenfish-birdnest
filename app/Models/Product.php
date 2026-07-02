@@ -6,12 +6,13 @@ class Product extends Model
 {
     protected $fillable = [
         'name', 'description', 'price',
-        'badge', 'category', 'images', 'video', 'is_active'
+        'badge', 'category', 'images', 'video', 'is_active', 'is_featured'
     ];
 
     protected $casts = [
-        'images'    => 'array',
-        'is_active' => 'boolean',
+        'images'      => 'array',
+        'is_active'   => 'boolean',
+        'is_featured'  => 'boolean',
     ];
 
     public function getThumbnailAttribute(): string
