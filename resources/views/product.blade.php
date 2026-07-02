@@ -4,8 +4,10 @@
 <style>
 .serif{font-family:'Cormorant Garamond',serif}
 .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.prod-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid rgba(107,174,214,.12);transition:transform .2s,box-shadow .2s}
+.prod-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid rgba(107,174,214,.12);transition:transform .2s,box-shadow .2s;display:flex;flex-direction:column}
 .prod-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(13,27,42,.1)}
+.prod-card-body{padding:18px 16px 20px;display:flex;flex-direction:column;flex:1}
+.prod-card-spacer{flex:1}
 .filter-btn{padding:8px 18px;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;border-radius:100px;border:1.5px solid rgba(107,174,214,.3);background:transparent;color:#4A6375;cursor:pointer;text-decoration:none;transition:all .2s;display:inline-block}
 .filter-btn:hover,.filter-btn.active{background:#6BAED6;border-color:#6BAED6;color:#0D1B2A}
 @media(max-width:599px){.prod-grid{grid-template-columns:1fr}.filter-bar{flex-direction:column!important;align-items:flex-start!important}}
@@ -48,16 +50,17 @@
  <div class="prod-grid">
  @forelse($products as $p)
  <div class="prod-card">
-  <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#DAE8F0">
+  <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#DAE8F0;flex-shrink:0">
    @if($p->badge==='limited')<span style="position:absolute;top:10px;left:10px;z-index:2;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(107,174,214,.9);color:#0D1B2A">PREMIUM</span>@endif
    @if($p->badge==='new')<span style="position:absolute;top:10px;left:10px;z-index:2;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(107,200,150,.9);color:#062912">NEW</span>@endif
    <img src="{{ $p->thumbnail }}" alt="{{ $p->name }}" style="width:100%;height:100%;object-fit:cover" onerror="this.src='/IMAGE/SUPER.jpeg'">
   </div>
-  <div style="padding:18px 16px 20px">
+  <div class="prod-card-body">
    <h3 class="serif" style="font-size:17px;font-weight:700;color:#1C2B3A;margin-bottom:4px">{{ $p->name }}</h3>
    <p style="font-size:12px;color:#4A6375;margin-bottom:8px;line-height:1.6">{{ Str::limit($p->description,65) }}</p>
-   <p style="font-size:14px;font-weight:700;color:#6BAED6;margin-bottom:14px">Rp {{ number_format($p->price,0,',','.') }}</p>
-   <form method="POST" action="{{ route('cart.add') }}">@csrf
+   <p style="font-size:14px;font-weight:700;color:#6BAED6;margin-bottom:0">Rp {{ number_format($p->price,0,',','.') }}</p>
+   <div class="prod-card-spacer"></div>
+   <form method="POST" action="{{ route('cart.add') }}" style="margin-top:14px">@csrf
    <input type="hidden" name="product_id" value="{{ $p->id }}">
    <button type="submit" style="width:100%;padding:11px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:#6BAED6;color:#0D1B2A;border:none;border-radius:8px;cursor:pointer" onmouseover="this.style.opacity=.8" onmouseout="this.style.opacity=1">@lang('messages.add_cart')</button>
    </form>

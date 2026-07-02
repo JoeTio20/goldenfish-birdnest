@@ -33,6 +33,17 @@ class CartController extends Controller
         }
 
         session(['cart' => $cart]);
+        $cartCount = array_sum(array_column($cart, 'qty'));
+
+        if ($request->ajax() || $request->wantsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Produk ditambahkan ke keranjang!',
+                'cartCount' => $cartCount,
+                'productName' => $product->name,
+            ]);
+        }
+
         return back()->with('cart_success', 'Produk ditambahkan ke keranjang!');
     }
 

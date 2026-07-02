@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('title','Checkout')
 @section('content')
-<div style="background:#FAF8F5;min-height:80vh;padding:40px 60px;">
+<div style="background:#F7F9FB;min-height:80vh;padding:40px 24px;">
 
-  <h1 style="font-family:'Playfair Display',serif;font-size:36px;font-weight:400;color:#1A1009;margin-bottom:6px;">Checkout</h1>
-  <p style="font-size:12px;color:#A08070;margin-bottom:32px;">
-    <a href="{{ route('cart.index') }}" style="color:#A08070;text-decoration:none;">Cart</a>
+  <h1 style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:#1C2B3A;margin-bottom:6px;">Checkout</h1>
+  <p style="font-size:12px;color:#4A6375;margin-bottom:32px;">
+    <a href="{{ route('cart.index') }}" style="color:#4A6375;text-decoration:none;">Cart</a>
     <span style="margin:0 6px;">&rsaquo;</span>
-    <strong style="color:#2C1810;">Information &amp; Payment</strong>
+    <strong style="color:#1C2B3A;">Information &amp; Payment</strong>
   </p>
 
   @if($errors->any())
-    <div style="background:#FEF2F2;border:1px solid #FCA5A5;color:#991B1B;font-size:13px;padding:12px 16px;border-radius:6px;margin-bottom:20px;">
+    <div style="background:#FEF2F2;border:1px solid #FCA5A5;color:#991B1B;font-size:13px;padding:12px 16px;border-radius:10px;margin-bottom:20px;">
       <ul style="margin:0;padding-left:16px;">@foreach($errors->all() as $e)<li>{{ $e }}</li>@endforeach</ul>
     </div>
   @endif
@@ -21,105 +21,105 @@
     <div style="display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start;">
 
       <div>
-        <h2 style="display:flex;align-items:center;gap:12px;font-size:17px;font-weight:500;color:#2C1810;margin-bottom:20px;">
-          <span style="width:26px;height:26px;border-radius:50%;border:1.5px solid #2C1810;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">1</span>
-          Shipping Details
+        <h2 style="display:flex;align-items:center;gap:12px;font-size:17px;font-weight:500;color:#1C2B3A;margin-bottom:20px;">
+          <span style="width:26px;height:26px;border-radius:50%;border:1.5px solid #6BAED6;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">1</span>
+          Ongkir Details
         </h2>
 
         <div style="margin-bottom:18px;">
-          <label style="display:block;font-size:12px;color:#A08070;margin-bottom:6px;">WhatsApp Number</label>
+          <label style="display:block;font-size:12px;color:#4A6375;margin-bottom:6px;">Nomor WhatsApp</label>
           <input type="text" name="whatsapp" value="{{ old('whatsapp') }}" placeholder="+62 812..." required
-                 style="width:100%;border:none;border-bottom:1px solid #D4C9BC;padding:8px 0;font-size:14px;background:transparent;outline:none;color:#2C1810;box-sizing:border-box;">
+                 style="width:100%;border:none;border-bottom:1.5px solid rgba(107,174,214,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1C2B3A;box-sizing:border-box;">
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:18px;">
           <div>
-            <label style="display:block;font-size:12px;color:#A08070;margin-bottom:6px;">First Name</label>
+            <label style="display:block;font-size:12px;color:#4A6375;margin-bottom:6px;">Nama Depan</label>
             <input type="text" name="first_name" value="{{ old('first_name') }}" required
-                   style="width:100%;border:none;border-bottom:1px solid #D4C9BC;padding:8px 0;font-size:14px;background:transparent;outline:none;color:#2C1810;box-sizing:border-box;">
+                   style="width:100%;border:none;border-bottom:1.5px solid rgba(107,174,214,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1C2B3A;box-sizing:border-box;">
           </div>
           <div>
-            <label style="display:block;font-size:12px;color:#A08070;margin-bottom:6px;">Last Name</label>
+            <label style="display:block;font-size:12px;color:#4A6375;margin-bottom:6px;">Nama Belakang</label>
             <input type="text" name="last_name" value="{{ old('last_name') }}" required
-                   style="width:100%;border:none;border-bottom:1px solid #D4C9BC;padding:8px 0;font-size:14px;background:transparent;outline:none;color:#2C1810;box-sizing:border-box;">
+                   style="width:100%;border:none;border-bottom:1.5px solid rgba(107,174,214,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1C2B3A;box-sizing:border-box;">
           </div>
         </div>
         <div style="margin-bottom:18px;">
-          <label style="display:block;font-size:12px;color:#A08070;margin-bottom:6px;">Shipping Address</label>
-          <input type="text" name="address" value="{{ old('address') }}" placeholder="Street name and house number" required
-                 style="width:100%;border:none;border-bottom:1px solid #D4C9BC;padding:8px 0;font-size:14px;background:transparent;outline:none;color:#2C1810;box-sizing:border-box;">
+          <label style="display:block;font-size:12px;color:#4A6375;margin-bottom:6px;">Alamat Pengiriman</label>
+          <input type="text" name="address" value="{{ old('address') }}" placeholder="Nama jalan dan nomor rumah" required
+                 style="width:100%;border:none;border-bottom:1.5px solid rgba(107,174,214,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1C2B3A;box-sizing:border-box;">
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;">
           <div>
-            <label style="display:block;font-size:12px;color:#A08070;margin-bottom:6px;">City</label>
+            <label style="display:block;font-size:12px;color:#4A6375;margin-bottom:6px;">City</label>
             <input type="text" name="city" value="{{ old('city') }}" required
-                   style="width:100%;border:none;border-bottom:1px solid #D4C9BC;padding:8px 0;font-size:14px;background:transparent;outline:none;color:#2C1810;box-sizing:border-box;">
+                   style="width:100%;border:none;border-bottom:1.5px solid rgba(107,174,214,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1C2B3A;box-sizing:border-box;">
           </div>
           <div>
-            <label style="display:block;font-size:12px;color:#A08070;margin-bottom:6px;">Postal Code</label>
+            <label style="display:block;font-size:12px;color:#4A6375;margin-bottom:6px;">Kode Pos</label>
             <input type="text" name="postal_code" value="{{ old('postal_code') }}"
-                   style="width:100%;border:none;border-bottom:1px solid #D4C9BC;padding:8px 0;font-size:14px;background:transparent;outline:none;color:#2C1810;box-sizing:border-box;">
+                   style="width:100%;border:none;border-bottom:1.5px solid rgba(107,174,214,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1C2B3A;box-sizing:border-box;">
           </div>
         </div>
 
-        <h2 style="display:flex;align-items:center;gap:12px;font-size:17px;font-weight:500;color:#2C1810;margin-bottom:20px;">
-          <span style="width:26px;height:26px;border-radius:50%;border:1.5px solid #2C1810;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">2</span>
-          Payment Method
+        <h2 style="display:flex;align-items:center;gap:12px;font-size:17px;font-weight:500;color:#1C2B3A;margin-bottom:20px;">
+          <span style="width:26px;height:26px;border-radius:50%;border:1.5px solid #6BAED6;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0;">2</span>
+          Metode Pembayaran
         </h2>
 
-        <label id="lbl-midtrans" style="display:flex;justify-content:space-between;align-items:center;border:1.5px solid #2C1810;border-radius:6px;padding:14px 16px;cursor:pointer;margin-bottom:10px;">
+        <label id="lbl-midtrans" style="display:flex;justify-content:space-between;align-items:center;border:1.5px solid #6BAED6;border-radius:10px;padding:14px 16px;cursor:pointer;margin-bottom:10px;">
           <div style="display:flex;align-items:center;gap:12px;">
-            <input type="radio" name="payment_method" value="midtrans" checked style="accent-color:#2C1810;width:16px;height:16px;">
-            <span style="font-size:14px;font-weight:500;color:#2C1810;">Credit / Debit Card &amp; E-Wallet</span>
+            <input type="radio" name="payment_method" value="midtrans" checked style="accent-color:#1C2B3A;width:16px;height:16px;">
+            <span style="font-size:14px;font-weight:500;color:#1C2B3A;">Kartu / E-Wallet (Midtrans)</span>
           </div>
           <svg width="20" height="20" fill="none" stroke="#A08070" stroke-width="1.5" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
         </label>
 
-        <label id="lbl-transfer" style="display:flex;justify-content:space-between;align-items:center;border:1px solid #EDE5DC;border-radius:6px;padding:14px 16px;cursor:pointer;margin-bottom:12px;">
+        <label id="lbl-transfer" style="display:flex;justify-content:space-between;align-items:center;border:1.5px solid rgba(107,174,214,.2);border-radius:10px;padding:14px 16px;cursor:pointer;margin-bottom:12px;">
           <div style="display:flex;align-items:center;gap:12px;">
-            <input type="radio" name="payment_method" value="transfer" style="accent-color:#2C1810;width:16px;height:16px;">
-            <span style="font-size:14px;font-weight:500;color:#2C1810;">Manual Bank Transfer</span>
+            <input type="radio" name="payment_method" value="transfer" style="accent-color:#1C2B3A;width:16px;height:16px;">
+            <span style="font-size:14px;font-weight:500;color:#1C2B3A;">Transfer Bank Manual</span>
           </div>
           <svg width="20" height="20" fill="none" stroke="#A08070" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </label>
 
-        <div id="bank-info" style="display:none;background:#FBF6EE;border:1px solid #EDE5DC;border-radius:6px;padding:16px;margin-bottom:20px;">
-          <p style="font-size:12px;font-weight:600;color:#2C1810;margin-bottom:8px;">Transfer ke rekening:</p>
-          <p style="font-size:13px;color:#6B5B4E;">Bank BCA</p>
-          <p style="font-size:17px;font-weight:700;color:#2C1810;letter-spacing:.05em;">1234 5678 90</p>
-          <p style="font-size:13px;color:#6B5B4E;">a.n. Sarang Burung Walet</p>
-          <p style="font-size:11px;color:#A08070;margin-top:8px;">Konfirmasi pembayaran via WhatsApp setelah transfer.</p>
+        <div id="bank-info" style="display:none;background:rgba(107,174,214,.06);border:1.5px solid rgba(107,174,214,.2);border-radius:10px;padding:16px;margin-bottom:20px;">
+          <p style="font-size:12px;font-weight:600;color:#1C2B3A;margin-bottom:8px;">Transfer ke rekening:</p>
+          <p style="font-size:13px;color:#4A6375;">Bank BCA</p>
+          <p style="font-size:17px;font-weight:700;color:#1C2B3A;letter-spacing:.05em;">1234 5678 90</p>
+          <p style="font-size:13px;color:#4A6375;">a.n. Sarang Burung Walet</p>
+          <p style="font-size:11px;color:#4A6375;margin-top:8px;">Konfirmasi pembayaran via WhatsApp setelah transfer.</p>
         </div>
 
-        <button type="submit" style="display:inline-flex;align-items:center;gap:10px;background:#2C1810;color:#fff;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:16px 32px;border:none;cursor:pointer;">
-          COMPLETE ORDER
+        <button type="submit" style="display:inline-flex;align-items:center;gap:10px;background:#0D1B2A;color:#fff;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:16px 32px;border:none;cursor:pointer;">
+          SELESAIKAN PESANAN
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         </button>
-        <p style="font-size:11px;color:#A08070;margin-top:10px;">Taxes and shipping calculated at checkout. Secure SSL encrypted transaction.</p>
+        <p style="font-size:11px;color:#4A6375;margin-top:10px;">Transaksi dienkripsi SSL yang aman.</p>
       </div>
 
-      <div style="background:#fff;border:1px solid #EDE5DC;border-radius:4px;padding:24px;position:sticky;top:20px;">
-        <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#2C1810;margin-bottom:20px;">Order Summary</h3>
+      <div style="background:#fff;border:1.5px solid rgba(107,174,214,.2);border-radius:12px;padding:24px;position:sticky;top:20px;">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#1C2B3A;margin-bottom:20px;">Order Summary</h3>
         @foreach($cart as $item)
         <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px;">
           <div style="position:relative;flex-shrink:0;">
-            <img src="{{ $item['image'] }}" style="width:56px;height:56px;object-fit:cover;border-radius:4px;" onerror="this.src='/IMAGE/SUPER.jpeg'">
-            <span style="position:absolute;top:-6px;right:-6px;background:#2C1810;color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;">{{ $item['qty'] }}</span>
+            <img src="{{ $item['image'] }}" style="width:56px;height:56px;object-fit:cover;border-radius:12px;" onerror="this.src='/IMAGE/SUPER.jpeg'">
+            <span style="position:absolute;top:-6px;right:-6px;background:#0D1B2A;color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;">{{ $item['qty'] }}</span>
           </div>
           <div style="flex:1;min-width:0;">
-            <p style="font-size:13px;font-weight:500;color:#2C1810;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ $item['name'] }}</p>
-            <p style="font-size:11px;color:#A08070;">{{ Str::limit($item['desc']??'',35) }}</p>
+            <p style="font-size:13px;font-weight:500;color:#1C2B3A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ $item['name'] }}</p>
+            <p style="font-size:11px;color:#4A6375;">{{ Str::limit($item['desc']??'',35) }}</p>
           </div>
-          <p style="font-size:13px;font-weight:500;color:#2C1810;white-space:nowrap;">Rp {{ number_format($item['price']*$item['qty'],0,',','.') }}</p>
+          <p style="font-size:13px;font-weight:500;color:#1C2B3A;white-space:nowrap;">Rp {{ number_format($item['price']*$item['qty'],0,',','.') }}</p>
         </div>
         @endforeach
-        <hr style="border:none;border-top:1px solid #F0E9E0;margin:16px 0;">
-        <div style="display:flex;justify-content:space-between;font-size:13px;color:#6B5B4E;margin-bottom:8px;">
+        <hr style="height:1px;background:rgba(107,174,214,.15);margin:14px 0;border:none;">
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6375;margin-bottom:8px;">
           <span>Subtotal</span><span>Rp {{ number_format($subtotal,0,',','.') }}</span>
         </div>
-        <div style="display:flex;justify-content:space-between;font-size:13px;color:#A08070;margin-bottom:16px;">
-          <span>Shipping</span><span>Calculated later</span>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6375;margin-bottom:16px;">
+          <span>Ongkir</span><span>Dihitung kemudian</span>
         </div>
-        <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;color:#2C1810;">
+        <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;color:#1C2B3A;">
           <span>Total</span><span>Rp {{ number_format($subtotal,0,',','.') }}</span>
         </div>
       </div>

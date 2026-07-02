@@ -57,7 +57,7 @@ a{text-decoration:none}
    <a href="{{ route('cart.index') }}" class="snav-icon" style="position:relative">
     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
     @if(session('cart')&&count(session('cart')))
-    <span style="position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;background:#6BAED6;color:#0D1B2A;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ count(session('cart')) }}</span>
+    <span id="cart-badge" style="position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;background:#6BAED6;color:#0D1B2A;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ count(session('cart')) }}</span>
     @endif
    </a>
    <a href="/admin/login" class="snav-icon">
@@ -109,5 +109,82 @@ a{text-decoration:none}
   </div>
  </div>
 </footer>
+
+<style>
+#cart-toast{
+  position:fixed;bottom:28px;right:28px;z-index:9999;
+  background:#0D1B2A;color:#fff;
+  padding:14px 20px;border-radius:12px;
+  font-size:13px;font-weight:500;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 8px 32px rgba(13,27,42,.25);
+  transform:translateY(80px);opacity:0;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1),opacity .3s ease;
+  pointer-events:none;max-width:300px;
+}
+#cart-toast.show{transform:translateY(0);opacity:1;pointer-events:auto}
+#cart-toast svg{flex-shrink:0}
+#cart-toast-close{margin-left:auto;background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:16px;line-height:1;padding:0}
+#cart-toast-close:hover{color:#fff}
+</style>
+<div id="cart-toast">
+  <svg width="18" height="18" fill="none" stroke="#6BAED6" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  <span id="cart-toast-msg">Ditambahkan ke keranjang!</span>
+  <button id="cart-toast-close" onclick="hideToast()">&#x2715;</button>
+</div>
+<script>
+var toastTimer;
+function showToast(msg){
+  var t=document.getElementById('cart-toast');
+  document.getElementById('cart-toast-msg').textContent=msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(hideToast,3500);
+}
+function hideToast(){
+  document.getElementById('cart-toast').classList.remove('show');
+}
+function updateCartBadge(count){
+  var badges=document.querySelectorAll('#cart-badge');
+  badges.forEach(function(b){
+    if(count>0){b.textContent=count;b.style.display='flex';}
+    else{b.style.display='none';}
+  });
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.body.addEventListener('submit',function(e){
+    var form=e.target;
+    if(!form.querySelector('input[name="product_id"]')) return;
+    var action=form.getAttribute('action')||'';
+    if(action.indexOf('/cart/add')===-1) return;
+    e.preventDefault();
+    var data=new FormData(form);
+    fetch(action,{
+      method:'POST',
+      headers:{'X-Requested-With':'XMLHttpRequest','Accept':'application/json'},
+      body:data
+    })
+    .then(function(r){return r.json();})
+    .then(function(res){
+      if(res.success){
+        showToast(res.productName+' ditambahkan ke keranjang!');
+        updateCartBadge(res.cartCount);
+        // animate button
+        var btn=form.querySelector('button[type="submit"]');
+        if(btn){
+          var orig=btn.textContent;
+          btn.textContent='✓ Ditambahkan!';
+          btn.style.background='#16a34a';
+          setTimeout(function(){btn.textContent=orig;btn.style.background='';},1800);
+        }
+      }
+    })
+    .catch(function(){
+      form.submit();
+    });
+  });
+});
+</script>
+
 @yield('scripts')
 </body></html>
