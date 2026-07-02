@@ -56,9 +56,7 @@ a{text-decoration:none}
    @endif
    <a href="{{ route('cart.index') }}" class="snav-icon" style="position:relative">
     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
-    @if(session('cart')&&count(session('cart')))
-    <span id="cart-badge" style="position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;background:#6BAED6;color:#0D1B2A;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center">{{ count(session('cart')) }}</span>
-    @endif
+    <span id="cart-badge" style="position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;background:#6BAED6;color:#0D1B2A;font-size:9px;font-weight:700;display:{{ (session('cart')&&count(session('cart'))) ? 'flex' : 'none' }};align-items:center;justify-content:center">{{ count(session('cart',[]) ) }}</span>
    </a>
    <a href="/admin/login" class="snav-icon">
     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -166,16 +164,20 @@ document.addEventListener('DOMContentLoaded',function(){
     })
     .then(function(r){return r.json();})
     .then(function(res){
-      if(res.success){
+              if(res.success){
         showToast(res.productName+' ditambahkan ke keranjang!');
         updateCartBadge(res.cartCount);
-        // animate button
         var btn=form.querySelector('button[type="submit"]');
         if(btn){
           var orig=btn.textContent;
           btn.textContent='✓ Ditambahkan!';
-          btn.style.background='#16a34a';
-          setTimeout(function(){btn.textContent=orig;btn.style.background='';},1800);
+          btn.style.setProperty('background','#16a34a','important');
+          btn.style.setProperty('color','#fff','important');
+          setTimeout(function(){
+            btn.textContent=orig;
+            btn.style.removeProperty('background');
+            btn.style.removeProperty('color');
+          },1800);
         }
       }
     })
