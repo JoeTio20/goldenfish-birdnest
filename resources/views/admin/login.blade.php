@@ -1,48 +1,50 @@
 @extends('layouts.app')
-@section('title', 'Login - Sarang Burung')
+@section('title','Login Admin - Sarang Burung')
+@section('head')
+<style>
+.serif{font-family:'Cormorant Garamond',serif}
+.login-input{width:100%;border:none;border-bottom:1.5px solid rgba(107,174,214,.3);padding:10px 0;font-size:14px;background:transparent;outline:none;color:#1C2B3A;box-sizing:border-box;transition:border-color .2s}
+.login-input:focus{border-bottom-color:#6BAED6}
+.login-label{display:block;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#4A6375;margin-bottom:8px}
+</style>
+@endsection
 @section('content')
 
-<div class="min-h-[calc(100vh-64px)] flex flex-col items-center justify-center py-16 px-4 md:px-6">
-  <div class="mb-8 text-center">
-    <img src="/IMAGE/logo.png" alt="Sarang Burung" class="w-20 h-20 object-contain mx-auto" onerror="this.style.display='none'">
+<div style="min-height:calc(100vh - 60px);background:#F7F9FB;display:flex;align-items:center;justify-content:center;padding:40px 20px">
+ <div style="width:100%;max-width:400px">
+  <div style="text-align:center;margin-bottom:32px">
+   <p class="serif" style="font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#6BAED6;margin-bottom:8px">Admin Panel</p>
+   <h1 class="serif" style="font-size:2.2rem;font-weight:700;color:#1C2B3A;margin:0">Selamat Datang</h1>
   </div>
 
-  <div class="w-full max-w-md bg-white rounded-sm shadow-sm border border-gray-100 px-8 md:px-10 py-10">
-    <h1 class="font-serif text-3xl text-center mb-1" style="font-family:'Playfair Display',serif">Welcome Back</h1>
-    <p class="text-center text-sm text-gray-400 mb-8">Sign in to your account</p>
+  @if(session('error_type') === 'email')
+  <div style="background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.2);color:#c0392b;font-size:13px;padding:12px 16px;border-radius:10px;margin-bottom:20px">Email tidak ditemukan.</div>
+  @elseif(session('error_type') === 'password')
+  <div style="background:rgba(192,57,43,.06);border:1px solid rgba(192,57,43,.2);color:#c0392b;font-size:13px;padding:12px 16px;border-radius:10px;margin-bottom:20px">Password salah. Coba lagi.</div>
+  @endif
 
-    @if(session('error_type') === 'email')
-      <div class="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded mb-6">
-        Sorry, we couldn't find an account with that email address.
-      </div>
-    @elseif(session('error_type') === 'password')
-      <div class="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded mb-6">
-        Sorry, wrong password. Please try again.
-      </div>
-    @endif
+  <div style="background:#fff;border-radius:16px;border:1px solid rgba(107,174,214,.15);padding:36px 32px;box-shadow:0 4px 24px rgba(13,27,42,.05)">
+  <form method="POST" action="{{ route('admin.login.post') }}">@csrf
 
-    <form method="POST" action="{{ route('admin.login.post') }}">
-      @csrf
-      <div class="mb-5">
-        <label class="block text-[10px] tracking-[.15em] uppercase text-gray-500 mb-2">Email Address</label>
-        <input type="email" name="email" value="{{ old('email') }}" required autofocus
-               class="w-full border-0 border-b border-gray-300 pb-2 text-sm focus:outline-none focus:border-gray-800 transition bg-transparent"
-               placeholder="name@example.com">
-      </div>
-      <div class="mb-8">
-        <label class="block text-[10px] tracking-[.15em] uppercase text-gray-500 mb-2">Password</label>
-        <input type="password" name="password" required
-               class="w-full border-0 border-b border-gray-300 pb-2 text-sm focus:outline-none focus:border-gray-800 transition bg-transparent">
-      </div>
-      <button type="submit" class="w-full bg-charcoal text-cream text-[11px] tracking-[.2em] uppercase py-3.5 hover:opacity-80 transition">
-        SIGN IN
-      </button>
-    </form>
+   <div style="margin-bottom:22px">
+    <label class="login-label">Email</label>
+    <input type="email" name="email" value="{{ old('email') }}" placeholder="admin@example.com" required autofocus class="login-input">
+   </div>
+
+   <div style="margin-bottom:30px">
+    <label class="login-label">Password</label>
+    <input type="password" name="password" required class="login-input">
+   </div>
+
+   <button type="submit" style="width:100%;padding:14px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;border-radius:100px;background:#0D1B2A;color:#fff;border:none;cursor:pointer" onmouseover="this.style.background='#6BAED6';this.style.color='#0D1B2A'" onmouseout="this.style.background='#0D1B2A';this.style.color='#fff'">Masuk</button>
+  </form>
   </div>
 
-  <p class="mt-6 text-xs text-gray-400 flex items-center gap-1">
-    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-    Need assistance? Contact admin.
+  <p style="text-align:center;font-size:11px;color:#4A6375;margin-top:20px;display:flex;align-items:center;justify-content:center;gap:6px">
+   <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+   Halaman khusus administrator
   </p>
+ </div>
 </div>
+
 @endsection
