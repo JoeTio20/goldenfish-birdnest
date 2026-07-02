@@ -2,7 +2,7 @@
 @section('title','Filosofi - Sarang Burung')
 @section('head')
 <style>
-{.serif{font-family:'Cormorant Garamond',serif}}
+.serif{font-family:'Cormorant Garamond',serif}
 </style>
 @endsection
 @section('content')
