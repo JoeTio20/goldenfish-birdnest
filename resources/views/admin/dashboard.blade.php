@@ -1,85 +1,90 @@
 @extends('admin.layout')
 @section('title','Dashboard')
 @section('header','Dashboard')
-@section('content')
-
 @php
   $totalOrders = \App\Models\Order::count();
   $pendingOrders = \App\Models\Order::where('status','pending')->count();
+  $totalProducts = \App\Models\Product::count();
+  $activeProducts = \App\Models\Product::where('is_active',true)->count();
+  $latestProducts = \App\Models\Product::latest()->take(5)->get();
+  $recentOrders = \App\Models\Order::latest()->take(5)->get();
 @endphp
+@section('content')
 
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-  <div class="rounded-2xl p-5" style="background:rgba(200,150,90,.12);border:1px solid rgba(200,150,90,.2)">
-    <p class="text-[10px] tracking-[.2em] uppercase font-semibold mb-3" style="color:#C8965A">Total Produk</p>
-    <p class="text-4xl font-bold text-white mb-1">{{ $totalProducts }}</p>
-    <p class="text-[11px] text-white/30">Semua produk</p>
-  </div>
-  <div class="rounded-2xl p-5" style="background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.15)">
-    <p class="text-[10px] tracking-[.2em] uppercase text-green-400 font-semibold mb-3">Produk Aktif</p>
-    <p class="text-4xl font-bold text-white mb-1">{{ $activeProducts }}</p>
-    <p class="text-[11px] text-white/30">Aktif &amp; live</p>
-  </div>
-  <div class="rounded-2xl p-5" style="background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2)">
-    <p class="text-[10px] tracking-[.2em] uppercase text-indigo-400 font-semibold mb-3">Total Order</p>
-    <p class="text-4xl font-bold text-white mb-1">{{ $totalOrders }}</p>
-    <p class="text-[11px] text-white/30">Semua pesanan</p>
-  </div>
-  <div class="rounded-2xl p-5" style="background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.15)">
-    <p class="text-[10px] tracking-[.2em] uppercase text-yellow-400 font-semibold mb-3">Pending</p>
-    <p class="text-4xl font-bold text-white mb-1">{{ $pendingOrders }}</p>
-    <p class="text-[11px] text-white/30">Belum diproses</p>
-  </div>
+<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px" class="md:grid-cols-4">
+<div class="stat-card">
+  <p style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#6BAED6;margin:0 0 12px">Total Produk</p>
+  <p class="serif" style="font-size:2.4rem;font-weight:700;color:#fff;margin:0 0 4px">{{ $totalProducts }}</p>
+  <p style="font-size:11px;color:rgba(255,255,255,.28);margin:0">Semua produk</p>
+</div>
+<div class="stat-card">
+  <p style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(107,174,214,.6);margin:0 0 12px">Aktif</p>
+  <p class="serif" style="font-size:2.4rem;font-weight:700;color:#fff;margin:0 0 4px">{{ $activeProducts }}</p>
+  <p style="font-size:11px;color:rgba(255,255,255,.28);margin:0">Live di website</p>
+</div>
+<div class="stat-card">
+  <p style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(130,200,170,.8);margin:0 0 12px">Total Order</p>
+  <p class="serif" style="font-size:2.4rem;font-weight:700;color:#fff;margin:0 0 4px">{{ $totalOrders }}</p>
+  <p style="font-size:11px;color:rgba(255,255,255,.28);margin:0">Semua pesanan</p>
+</div>
+<div class="stat-card">
+  <p style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,180,100,.8);margin:0 0 12px">Pending</p>
+  <p class="serif" style="font-size:2.4rem;font-weight:700;color:#fff;margin:0 0 4px">{{ $pendingOrders }}</p>
+  <p style="font-size:11px;color:rgba(255,255,255,.28);margin:0">Belum diproses</p>
+</div>
 </div>
 
-<div class="rounded-2xl overflow-hidden mb-6" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)">
-  <div class="flex justify-between items-center px-6 py-4" style="border-bottom:1px solid rgba(255,255,255,.07)">
-    <h3 class="font-semibold text-white text-sm">Produk Terbaru</h3>
-    <a href="{{ route('admin.products.index') }}" class="text-[11px] font-semibold hover:underline tracking-widest uppercase" style="color:#C8965A">Lihat Semua &rarr;</a>
+<div style="display:grid;grid-template-columns:1fr;gap:16px" class="md:grid-cols-2">
+
+<div style="background:rgba(255,255,255,.02);border:1px solid rgba(107,174,214,.1);border-radius:12px;overflow:hidden">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.05)">
+    <h3 style="font-size:13px;font-weight:600;color:#fff;margin:0">Produk Terbaru</h3>
+    <a href="{{ route('admin.products.index') }}" style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#6BAED6;text-decoration:none">Lihat Semua &rarr;</a>
   </div>
-  <table class="w-full text-sm">
-    <thead>
-      <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
-        <th class="px-6 py-3 text-left text-[10px] tracking-[.2em] uppercase text-white/30 font-semibold">Nama Produk</th>
-        <th class="px-6 py-3 text-left text-[10px] tracking-[.2em] uppercase text-white/30 font-semibold">Harga</th>
-        <th class="px-6 py-3 text-left text-[10px] tracking-[.2em] uppercase text-white/30 font-semibold">Status</th>
-      </tr>
-    </thead>
+  <table class="data-table">
+    <thead><tr><th>Produk</th><th>Harga</th><th>Status</th></tr></thead>
     <tbody>
-      @foreach($latestProducts as $p)
-      <tr class="hover:bg-white/5 transition" style="border-bottom:1px solid rgba(255,255,255,.04)">
-        <td class="px-6 py-3 text-white/80 font-medium">{{ $p->name }}</td>
-        <td class="px-6 py-3 font-semibold" style="color:#C8965A">Rp {{ number_format($p->price,0,',','.') }}</td>
-        <td class="px-6 py-3">
-          <span class="px-2.5 py-1 rounded-full text-[10px] font-bold" style="background:{{ $p->is_active ? 'rgba(34,197,94,.12)' : 'rgba(239,68,68,.12)' }};color:{{ $p->is_active ? '#4ade80' : '#f87171' }}">
-            {{ $p->is_active ? 'Aktif' : 'Nonaktif' }}
-          </span>
-        </td>
-      </tr>
-      @endforeach
+    @foreach($latestProducts as $p)
+    <tr>
+      <td style="color:rgba(216,228,237,.8);font-weight:500">{{ $p->name }}</td>
+      <td style="color:#6BAED6;font-weight:600">Rp {{ number_format($p->price,0,',','.') }}</td>
+      <td><span class="badge" style="{{ $p->is_active ? 'background:rgba(107,200,150,.12);color:#6BC893' : 'background:rgba(255,100,100,.1);color:rgba(255,120,120,.8)' }}">{{ $p->is_active ? 'Aktif' : 'Nonaktif' }}</span></td>
+    </tr>
+    @endforeach
     </tbody>
   </table>
 </div>
 
-<div class="rounded-2xl overflow-hidden" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07)">
-  <div class="flex justify-between items-center px-6 py-4" style="border-bottom:1px solid rgba(255,255,255,.07)">
-    <h3 class="font-semibold text-white text-sm">Order Terbaru</h3>
-    <a href="{{ route('admin.orders.index') }}" class="text-[11px] font-semibold hover:underline tracking-widest uppercase" style="color:#C8965A">Lihat Semua &rarr;</a>
+<div style="background:rgba(255,255,255,.02);border:1px solid rgba(107,174,214,.1);border-radius:12px;overflow:hidden">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.05)">
+    <h3 style="font-size:13px;font-weight:600;color:#fff;margin:0">Order Terbaru</h3>
+    <a href="{{ route('admin.orders.index') }}" style="font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#6BAED6;text-decoration:none">Lihat Semua &rarr;</a>
   </div>
-  @php $recentOrders = \App\Models\Order::latest()->take(5)->get(); @endphp
   @forelse($recentOrders as $order)
-  <div class="flex items-center justify-between px-6 py-4 hover:bg-white/5 transition" style="border-bottom:1px solid rgba(255,255,255,.04)">
+  @php
+    $sc = match($order->status) {
+      'selesai' => ['#6BC893','rgba(107,200,150,.1)'],
+      'diantar' => ['#6BAED6','rgba(107,174,214,.1)'],
+      'dikemas' => ['#A78BFA','rgba(167,139,250,.1)'],
+      'dikonfirmasi' => ['#93C5FD','rgba(147,197,253,.1)'],
+      'dibatalkan' => ['rgba(255,120,120,.8)','rgba(255,100,100,.08)'],
+      default => ['#FBBF24','rgba(251,191,36,.1)']
+    };
+  @endphp
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-bottom:1px solid rgba(255,255,255,.04)">
     <div>
-      <p class="text-white/80 text-sm font-medium">{{ $order->full_name }}</p>
-      <p class="text-white/30 text-xs mt-0.5">{{ $order->created_at->diffForHumans() }}</p>
+      <p style="font-size:13px;font-weight:500;color:rgba(216,228,237,.85);margin:0 0 2px">{{ $order->full_name }}</p>
+      <p style="font-size:11px;color:rgba(255,255,255,.28);margin:0">{{ $order->created_at->diffForHumans() }}</p>
     </div>
-    <div class="text-right">
-      <p class="font-semibold text-sm" style="color:#C8965A">Rp {{ number_format($order->total,0,',','.') }}</p>
-      <p class="text-[10px] font-bold uppercase" style="color:{{ match($order->status) {'selesai'=>'#4ade80','diantar'=>'#818cf8','dikemas'=>'#c084fc','dikonfirmasi'=>'#60a5fa','dibatalkan'=>'#f87171',default=>'#fbbf24'} }}">{{ $order->status }}</p>
+    <div style="text-align:right">
+      <p style="font-size:13px;font-weight:600;color:#6BAED6;margin:0 0 2px">Rp {{ number_format($order->total,0,',','.') }}</p>
+      <span class="badge" style="background:{{ $sc[1] }};color:{{ $sc[0] }}">{{ $order->status }}</span>
     </div>
   </div>
   @empty
-  <p class="px-6 py-8 text-white/30 text-sm text-center">Belum ada pesanan masuk</p>
+  <p style="padding:40px 20px;text-align:center;color:rgba(255,255,255,.25);font-size:13px">Belum ada pesanan</p>
   @endforelse
 </div>
 
+</div>
 @endsection

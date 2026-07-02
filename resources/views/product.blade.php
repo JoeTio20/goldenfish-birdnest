@@ -4,7 +4,7 @@
 
 <section class="text-center py-16 px-6 bg-cream">
   <h1 class="font-serif text-4xl md:text-5xl font-normal mb-3">{{ __('messages.prod_title') }}</h1>
-  <p class="text-sm text-warm-gray">{{ __('messages.prod_sub') }}</p>
+  <p class="text-sm ">{{ __('messages.prod_sub') }}</p>
 </section>
 
 <section class="max-w-7xl mx-auto px-6 pb-20 pt-10">
@@ -12,10 +12,10 @@
     <div class="flex gap-2 flex-wrap">
       @foreach(['all'=>__('messages.filter_all'),'premium'=>'Premium','reguler'=>'Reguler'] as $cat=>$label)
       <a href="{{ route('product') }}?category={{ $cat }}&sort={{ $sort }}"
-         class="px-4 py-1.5 text-xs tracking-widest border rounded-full transition {{ $category===$cat ? 'bg-charcoal text-cream border-charcoal' : 'border-gray-300 text-warm-gray hover:border-charcoal hover:text-charcoal' }}">{{ $label }}</a>
+         class="px-4 py-1.5 text-xs tracking-widest border rounded-full transition {{ $category===$cat ? '  border-charcoal' : 'border-gray-300  hover:border-charcoal hover:text-charcoal' }}">{{ $label }}</a>
       @endforeach
     </div>
-    <div class="flex items-center gap-3 text-sm text-warm-gray">
+    <div class="flex items-center gap-3 text-sm ">
       <span>{{ __('messages.sort_label') }}:</span>
       <select onchange="location='{{ route('product') }}?category={{ $category }}&sort='+this.value"
               class="border border-gray-200 rounded px-3 py-1 text-sm text-charcoal focus:outline-none">
@@ -28,7 +28,7 @@
   </div>
 
   @if(session('cart_success'))
-    <div class="mb-6 bg-green-50 border border-green-200 text-green-800 text-sm px-4 py-3 rounded">
+    <div class="mb-6 rounded-xl text-sm px-4 py-3 rounded">
       {{ session('cart_success') }}
     </div>
   @endif
@@ -46,8 +46,8 @@
       </div>
       <div class="p-5">
         <h3 class="font-serif text-lg mb-1">{{ $p->name }}</h3>
-        <p class="text-xs text-warm-gray leading-relaxed mb-2">{{ $p->description }}</p>
-        <p class="text-sm text-warm-gray mb-4">Rp {{ number_format($p->price, 0, ',', '.') }}</p>
+        <p class="text-xs  leading-relaxed mb-2">{{ $p->description }}</p>
+        <p class="text-sm  mb-4">Rp {{ number_format($p->price, 0, ',', '.') }}</p>
 
         
         <form method="POST" action="{{ route('cart.add') }}">
