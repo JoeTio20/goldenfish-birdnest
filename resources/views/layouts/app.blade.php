@@ -9,10 +9,10 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{width:100%;overflow-x:hidden}
-body{font-family:'Inter',sans-serif;background:#F7F9FB;color:#1C2B3A}
+body{font-family:'Inter',sans-serif;background:#F7F9FB;color:#1C2B3A;padding-top:60px}
 .serif{font-family:'Cormorant Garamond',serif}
 a{text-decoration:none}
-#snav{background:#0D1B2A;position:sticky;top:0;z-index:200;border-bottom:1px solid rgba(107,174,214,.1)}
+#snav{background:#0D1B2A;position:fixed;top:0;left:0;right:0;width:100%;z-index:200;border-bottom:1px solid rgba(107,174,214,.1)}
 #snav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
 .snav-logo{color:#fff;font-size:15px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;font-family:'Cormorant Garamond',serif}
 #snav-links{display:flex;align-items:center;gap:32px}
