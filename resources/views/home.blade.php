@@ -2,79 +2,123 @@
 @section('title', 'Sarang Burung')
 @section('content')
 
-<!-- HERO -->
-<section class="max-w-7xl mx-auto px-6 py-16 min-h-[calc(100vh-64px)] grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-  <div>
-    <span class="block text-[11px] tracking-[.25em] uppercase text-warm-gray mb-5">{{ __("messages.hero_label") }}</span>
-    <h1 class="font-serif text-4xl md:text-6xl font-normal leading-tight mb-8">{{ __("messages.hero_title") }}</h1>
-    <div class="flex gap-4 flex-wrap">
-      <a href="{{ route('product') }}" class="bg-charcoal text-cream text-[11px] tracking-[.12em] uppercase px-7 py-3 hover:opacity-80 transition">{{ __("messages.hero_shop") }}</a>
-      <a href="{{ route('philosophy') }}" class="border border-charcoal text-charcoal text-[11px] tracking-[.12em] uppercase px-7 py-3 hover:bg-charcoal hover:text-cream transition">{{ __("messages.hero_phil") }}</a>
+<!-- ═══ HERO FULLSCREEN ═══ -->
+<section class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+  <img src="/IMAGE/SUPER.jpeg" alt="Sarang Burung" class="absolute inset-0 w-full h-full object-cover scale-105" style="filter:brightness(.45)">
+  <div class="absolute inset-0" style="background:linear-gradient(160deg,rgba(13,31,60,.7) 0%,rgba(0,0,0,.3) 50%,rgba(200,150,90,.15) 100%)"></div>
+  <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+    <span class="inline-block text-[11px] tracking-[.35em] uppercase text-[#C8965A] mb-6 font-semibold">Produk Premium Indonesia</span>
+    <h1 class="font-serif text-5xl md:text-7xl font-normal text-white leading-tight mb-8">{{ __('home.hero_title') }}</h1>
+    <p class="text-white/70 text-base md:text-lg max-w-xl mx-auto mb-10 leading-relaxed">{{ __('home.hero_sub') }}</p>
+    <div class="flex gap-4 justify-center flex-wrap">
+      <a href="{{ route('product') }}" class="bg-[#C8965A] text-white text-[11px] tracking-[.18em] uppercase px-9 py-4 hover:bg-[#b07a40] transition font-semibold">{{ __('home.shop_now') }}</a>
+      <a href="{{ route('philosophy') }}" class="border border-white/60 text-white text-[11px] tracking-[.18em] uppercase px-9 py-4 hover:bg-white hover:text-[#0D1F3C] transition">{{ __('home.our_story') }}</a>
     </div>
   </div>
-  <div class="overflow-hidden rounded shadow-2xl aspect-[4/3]">
-    <img src="/IMAGE/SUPER.jpeg" alt="Sarang Burung" class="w-full h-full object-cover">
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40">
+    <span class="text-[9px] tracking-[.3em] uppercase">Scroll</span>
+    <div class="w-px h-10 bg-white/30 animate-pulse"></div>
   </div>
 </section>
 
-<!-- MASTERWORK -->
-<section class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-  <div>
-    <h2 class="font-serif text-3xl md:text-4xl font-normal mb-6">{{ __("messages.master_title") }}</h2>
-    <p class="text-sm text-warm-gray leading-relaxed mb-4">{{ __("messages.master_p1") }}</p>
-    <p class="text-sm text-warm-gray leading-relaxed mb-8">{{ __("messages.master_p2") }}</p>
-    <a href="{{ route('philosophy') }}" class="text-[11px] font-semibold tracking-[.2em] uppercase border-b border-tan pb-1 hover:text-tan transition">&mdash; {{ __("messages.master_link") }}</a>
-  </div>
-  <div class="overflow-hidden rounded shadow-2xl aspect-[3/4]">
-    <img src="/IMAGE/MANGKOK.jpeg" alt="Crafting" class="w-full h-full object-cover">
+<!-- ═══ BRAND STRIP ═══ -->
+<section class="bg-[#0D1F3C] py-5 px-6">
+  <div class="max-w-7xl mx-auto flex flex-wrap justify-center md:justify-between items-center gap-6 text-white/50 text-[10px] tracking-[.25em] uppercase">
+    <span class="text-[#C8965A] font-semibold">Sarang Burung Premium</span>
+    <span>&#9670; Kualitas Ekspor</span>
+    <span>&#9670; 100% Natural</span>
+    <span>&#9670; Hygiene Certified</span>
+    <span>&#9670; Free Shipping 500rb+</span>
   </div>
 </section>
 
-<!-- FEATURED COLLECTIONS -->
-<section class="bg-cream-dark py-20 px-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="flex justify-between items-end mb-10">
-      <div>
-        <span class="block text-[10px] tracking-[.2em] uppercase text-warm-gray mb-2">{{ __("messages.feat_label") }}</span>
-        <h2 class="font-serif text-3xl font-normal">{{ __("messages.feat_title") }}</h2>
+<!-- ═══ MASTERWORK (image kiri, text kanan) ═══ -->
+<section class="bg-[#F5EFE6] py-24 px-6">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+    <div class="relative">
+      <div class="overflow-hidden aspect-[3/4] shadow-2xl">
+        <img src="/IMAGE/MANGKOK.jpeg" alt="Produk" class="w-full h-full object-cover hover:scale-105 transition duration-700">
       </div>
-      <a href="{{ route('product') }}" class="text-[11px] tracking-[.15em] uppercase text-warm-gray border-b border-warm-gray/50 hover:text-charcoal transition">{{ __("messages.feat_all") }}</a>
+      <div class="absolute -bottom-5 -right-5 w-40 h-40 border-2 border-[#C8965A] -z-0 hidden md:block"></div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="relative z-10">
+      <span class="block text-[10px] tracking-[.3em] uppercase text-[#C8965A] font-semibold mb-4">Keunggulan Kami</span>
+      <h2 class="font-serif text-4xl md:text-5xl font-normal text-[#1A1A18] mb-6 leading-tight">{{ __('home.masterwork_title') }}</h2>
+      <div class="w-12 h-0.5 bg-[#C8965A] mb-6"></div>
+      <p class="text-[#6B6B6B] leading-relaxed mb-4 text-sm">{{ __('home.masterwork_p1') }}</p>
+      <p class="text-[#6B6B6B] leading-relaxed mb-8 text-sm">{{ __('home.masterwork_p2') }}</p>
+      <a href="{{ route('philosophy') }}" class="inline-flex items-center gap-3 text-[11px] font-semibold tracking-[.2em] uppercase text-[#0D1F3C] border-b border-[#C8965A] pb-1 hover:text-[#C8965A] transition">
+        {{ __('home.read_story') }} <span class="text-[#C8965A]">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section class="bg-[#0D1F3C] py-16 px-6">
+  <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <div><p class="font-serif text-4xl text-[#C8965A] font-normal mb-2">10+</p><p class="text-[10px] tracking-[.2em] uppercase text-white/50">Tahun Pengalaman</p></div>
+    <div><p class="font-serif text-4xl text-[#C8965A] font-normal mb-2">50+</p><p class="text-[10px] tracking-[.2em] uppercase text-white/50">Produk Premium</p></div>
+    <div><p class="font-serif text-4xl text-[#C8965A] font-normal mb-2">1K+</p><p class="text-[10px] tracking-[.2em] uppercase text-white/50">Pelanggan Puas</p></div>
+    <div><p class="font-serif text-4xl text-[#C8965A] font-normal mb-2">15+</p><p class="text-[10px] tracking-[.2em] uppercase text-white/50">Kota Pengiriman</p></div>
+  </div>
+</section>
+
+<!-- ═══ FEATURED PRODUCTS ═══ -->
+<section class="bg-[#FAF7F4] py-24 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex justify-between items-end mb-12">
+      <div>
+        <span class="block text-[10px] tracking-[.3em] uppercase text-[#C8965A] font-semibold mb-3">{{ __('home.collection_label') }}</span>
+        <h2 class="font-serif text-4xl font-normal text-[#1A1A18]">{{ __('home.collection_title') }}</h2>
+      </div>
+      <a href="{{ route('product') }}" class="hidden md:flex items-center gap-2 text-[11px] tracking-[.18em] uppercase text-[#6B6B6B] border-b border-[#C8965A] pb-1 hover:text-[#C8965A] transition">
+        {{ __('home.view_all') }} &rarr;
+      </a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
       @foreach($featured as $p)
-      <div class="product-card bg-white rounded shadow hover:shadow-lg transition-shadow">
-        <div class="product-img relative overflow-hidden aspect-[4/3]">
+      @php $img = is_array($p->images) ? ($p->images[0] ?? '/IMAGE/SUPER.jpeg') : '/IMAGE/SUPER.jpeg'; @endphp
+      <div class="group bg-white shadow-sm hover:shadow-xl transition-shadow duration-300">
+        <div class="relative overflow-hidden aspect-[4/3]">
           @if($p->badge === 'limited')
-            <span class="absolute top-3 left-3 z-10 bg-gray-100 text-charcoal text-[10px] font-semibold tracking-widest uppercase px-2 py-1">{{ __("messages.limited") }}</span>
+            <span class="absolute top-3 left-3 z-10 bg-[#0D1F3C] text-white text-[9px] font-bold tracking-widest uppercase px-3 py-1">Limited</span>
           @elseif($p->badge === 'new')
-            <span class="absolute top-3 left-3 z-10 bg-tan text-white text-[10px] font-semibold tracking-widest uppercase px-2 py-1">{{ __("messages.new_badge") }}</span>
+            <span class="absolute top-3 left-3 z-10 bg-[#C8965A] text-white text-[9px] font-bold tracking-widest uppercase px-3 py-1">New</span>
           @endif
-          <img src="{{ $p->thumbnail }}" alt="{{ $p->name }}" class="w-full h-full object-cover" onerror="this.src='/IMAGE/SUPER.jpeg'">
+          <img src="{{ $img }}" alt="{{ $p->name }}" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" onerror="this.src='/IMAGE/SUPER.jpeg'">
         </div>
-        <div class="p-5">
-          <h3 class="font-serif text-lg mb-1">{{ $p->name }}</h3>
-          <p class="text-sm text-warm-gray mb-4">Rp {{ number_format($p->price, 0, ',', '.') }}</p>
-          <button class="btn-add-cart w-full bg-charcoal text-cream text-[11px] tracking-[.1em] uppercase py-2.5 hover:opacity-80 transition"
+        <div class="p-5 border-t border-gray-100">
+          <div class="flex justify-between items-start mb-3">
+            <h3 class="font-serif text-lg text-[#1A1A18]">{{ $p->name }}</h3>
+            <p class="text-sm font-semibold text-[#C8965A] whitespace-nowrap ml-2">Rp {{ number_format($p->price,0,',','.') }}</p>
+          </div>
+          <button class="btn-add-cart w-full bg-[#0D1F3C] text-white text-[10px] tracking-[.15em] uppercase py-3 hover:bg-[#C8965A] transition duration-300 font-semibold"
             data-id="{{ $p->id }}"
             data-name="{{ $p->name }}"
             data-price="{{ $p->price }}"
-            data-image="{{ $p->thumbnail }}">
-            {{ __("messages.add_cart") }}
+            data-image="{{ $img }}">
+            {{ __('home.add_to_cart') }}
           </button>
         </div>
       </div>
       @endforeach
     </div>
+    <div class="text-center mt-10 md:hidden">
+      <a href="{{ route('product') }}" class="inline-block border border-[#0D1F3C] text-[#0D1F3C] text-[11px] tracking-widest uppercase px-8 py-3 hover:bg-[#0D1F3C] hover:text-white transition">Lihat Semua Produk</a>
+    </div>
   </div>
 </section>
 
-<!-- BANNER -->
-<section class="relative min-h-[380px] flex items-center justify-center text-center bg-cover bg-center"
-         style="background-image:url('/IMAGE/PATAH BESAR.jpeg')">
-  <div class="absolute inset-0 bg-black/65"></div>
-  <div class="relative z-10 px-6">
-    <h2 class="font-serif text-white text-3xl md:text-5xl font-normal leading-tight mb-8">{{ __("messages.banner_title") }}</h2>
-    <a href="{{ route('philosophy') }}" class="border border-white text-white text-[11px] tracking-[.15em] uppercase px-8 py-3 hover:bg-white hover:text-charcoal transition">{{ __("messages.banner_cta") }}</a>
+<!-- ═══ FULLSCREEN BANNER ═══ -->
+<section class="relative min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden">
+  <img src="/IMAGE/PATAH BESAR.jpeg" alt="" class="absolute inset-0 w-full h-full object-cover" style="filter:brightness(.35)">
+  <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(13,31,60,.8),transparent)"></div>
+  <div class="relative z-10 text-center px-6 max-w-3xl mx-auto">
+    <span class="block text-[10px] tracking-[.35em] uppercase text-[#C8965A] font-semibold mb-5">Kualitas Terjamin</span>
+    <h2 class="font-serif text-4xl md:text-6xl font-normal text-white leading-tight mb-8">{{ __('home.banner_title') }}</h2>
+    <a href="{{ route('philosophy') }}" class="inline-block border border-white/70 text-white text-[11px] tracking-[.2em] uppercase px-10 py-4 hover:bg-white hover:text-[#0D1F3C] transition">{{ __('home.banner_cta') }}</a>
   </div>
 </section>
 
