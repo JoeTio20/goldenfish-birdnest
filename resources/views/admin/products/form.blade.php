@@ -115,17 +115,17 @@
     <div class="flex items-center gap-3">
       @if(isset($product))
         <button type="submit"
-                class="px-7 py-2.5 text-sm font-medium text-gray-800 border-2 border-green-500 rounded-lg hover:bg-green-50 transition">
+                style="padding:10px 24px;font-size:13px;font-weight:600;background:#16a34a;color:#fff;border:2px solid #16a34a;border-radius:10px;cursor:pointer;transition:all .2s" onmouseover="this.style.background='#fff';this.style.color='#16a34a'" onmouseout="this.style.background='#16a34a';this.style.color='#fff'">
           Simpan Perubahan
         </button>
       @else
         <button type="submit"
-                class="px-7 py-2.5 text-sm font-medium text-white rounded-lg transition" style="background:#1c1917;">
+                style="padding:10px 24px;font-size:13px;font-weight:600;background:#0D1B2A;color:#fff;border:2px solid #0D1B2A;border-radius:10px;cursor:pointer">
           Tambah Produk
         </button>
       @endif
       <a href="{{ route('admin.products.index') }}"
-         class="px-7 py-2.5 text-sm font-medium text-gray-500 border border-gray-200 rounded-lg hover:bg-gray-50 transition">Batal</a>
+         style="padding:10px 24px;font-size:13px;font-weight:600;background:#dc2626;color:#fff;border:2px solid #dc2626;border-radius:10px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block" onmouseover="this.style.background='#fff';this.style.color='#dc2626'" onmouseout="this.style.background='#dc2626';this.style.color='#fff'">Batal</a>
     </div>
 
   </form>
