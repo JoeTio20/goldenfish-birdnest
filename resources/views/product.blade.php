@@ -1,67 +1,82 @@
 @extends('layouts.app')
-@section('title', 'Produk Kami - Sarang Burung')
+@section('title', __('messages.prod_title') . ' - Sarang Burung')
+@section('head')
+<style>
+{*{box-sizing:border-box}}
+{.serif{font-family:'Cormorant Garamond',serif}}
+{.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}}
+{.prod-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid rgba(107,174,214,.12);transition:transform .2s,box-shadow .2s}}
+{.prod-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(13,27,42,.1)}}
+{.filter-btn{padding:8px 18px;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;border-radius:100px;border:1.5px solid rgba(107,174,214,.3);background:transparent;color:#4A6375;cursor:pointer;text-decoration:none;transition:all .2s}}
+{.filter-btn:hover,.filter-btn.active{background:#6BAED6;border-color:#6BAED6;color:#0D1B2A}}
+{@media(max-width:599px){.prod-grid{grid-template-columns:1fr}.filter-row{flex-direction:column!important;align-items:flex-start!important}.sort-wrap{width:100%}}}
+{@media(min-width:600px) and (max-width:1023px){.prod-grid{grid-template-columns:repeat(2,1fr)}}}
+</style>
+@endsection
 @section('content')
 
-<section class="text-center py-16 px-6 bg-cream">
-  <h1 class="font-serif text-4xl md:text-5xl font-normal mb-3">{{ __('messages.prod_title') }}</h1>
-  <p class="text-sm ">{{ __('messages.prod_sub') }}</p>
+<section style="background:#0D1B2A;padding:56px 20px 48px;text-align:center">
+  <p style="font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#6BAED6;margin:0 0 14px">Koleksi Kami</p>
+  <h1 class="serif" style="font-size:clamp(2.2rem,5vw,3.4rem);color:#fff;font-weight:700;margin:0 0 12px">@lang('messages.prod_title')</h1>
+  <p style="font-size:14px;color:rgba(255,255,255,.45);max-width:480px;margin:0 auto;line-height:1.75">@lang('messages.prod_sub')</p>
 </section>
 
-<section class="max-w-7xl mx-auto px-6 pb-20 pt-10">
-  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
-    <div class="flex gap-2 flex-wrap">
+<section style="background:#F7F9FB;padding:24px 20px;border-bottom:1px solid rgba(107,174,214,.12)">
+  <div style="max-width:1140px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px" class="filter-row">
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
       @foreach(['all'=>__('messages.filter_all'),'premium'=>'Premium','reguler'=>'Reguler'] as $cat=>$label)
-      <a href="{{ route('product') }}?category={{ $cat }}&sort={{ $sort }}"
-         class="px-4 py-1.5 text-xs tracking-widest border rounded-full transition {{ $category===$cat ? '  border-charcoal' : 'border-gray-300  hover:border-charcoal hover:text-charcoal' }}">{{ $label }}</a>
+      <a href="{{ route('product') }}?category={{ $cat }}&sort={{ request('sort','featured') }}"
+         class="filter-btn {{ request('category','all')===$cat ? 'active' : '' }}">{{ $label }}</a>
       @endforeach
     </div>
-    <div class="flex items-center gap-3 text-sm ">
-      <span>{{ __('messages.sort_label') }}:</span>
-      <select onchange="location='{{ route('product') }}?category={{ $category }}&sort='+this.value"
-              class="border border-gray-200 rounded px-3 py-1 text-sm text-charcoal focus:outline-none">
-        <option value="featured" {{ $sort==='featured'?'selected':'' }}>{{ __('messages.sort_feat') }}</option>
-        <option value="price_asc" {{ $sort==='price_asc'?'selected':'' }}>{{ __('messages.sort_asc') }}</option>
-        <option value="price_desc" {{ $sort==='price_desc'?'selected':'' }}>{{ __('messages.sort_desc') }}</option>
-        <option value="newest" {{ $sort==='newest'?'selected':'' }}>{{ __('messages.sort_new') }}</option>
+    <div class="sort-wrap" style="display:flex;align-items:center;gap:8px">
+      <span style="font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#4A6375">@lang('messages.sort_label')</span>
+      <select onchange="location='{{ route('product') }}?category={{ request('category','all') }}&sort='+this.value"
+              style="font-size:12px;padding:7px 12px;border-radius:8px;border:1.5px solid rgba(107,174,214,.25);background:#fff;color:#1C2B3A;outline:none;cursor:pointer">
+        <option value="featured" {{ request('sort')=='featured' ? 'selected' : '' }}>@lang('messages.sort_feat')</option>
+        <option value="price_asc" {{ request('sort')=='price_asc' ? 'selected' : '' }}>@lang('messages.sort_asc')</option>
+        <option value="price_desc" {{ request('sort')=='price_desc' ? 'selected' : '' }}>@lang('messages.sort_desc')</option>
+        <option value="newest" {{ request('sort')=='newest' ? 'selected' : '' }}>@lang('messages.sort_new')</option>
       </select>
     </div>
   </div>
+</section>
 
-  @if(session('cart_success'))
-    <div class="mb-6 rounded-xl text-sm px-4 py-3 rounded">
-      {{ session('cart_success') }}
-    </div>
-  @endif
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<section style="background:#F7F9FB;padding:40px 20px 72px">
+  <div style="max-width:1140px;margin:0 auto">
+    @if(session('cart_success'))
+    <div style="margin-bottom:20px;padding:12px 16px;border-radius:10px;background:rgba(107,174,214,.08);border:1px solid rgba(107,174,214,.2);color:#6BAED6;font-size:13px">{{ session('cart_success') }}</div>
+    @endif
+    <div class="prod-grid">
     @foreach($products as $p)
-    <div class="product-card bg-white rounded shadow hover:shadow-lg transition-shadow">
-      <div class="product-img relative overflow-hidden aspect-[4/3]">
+    <div class="prod-card">
+      <!-- IMAGE -->
+      <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#EDF4F8">
         @if($p->badge === 'limited')
-          <span class="absolute top-3 left-3 z-10 bg-gray-100 text-charcoal text-[10px] font-semibold tracking-widest uppercase px-2 py-1">{{ __('messages.limited') }}</span>
+        <span style="position:absolute;top:10px;left:10px;z-index:2;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(107,174,214,.85);color:#0D1B2A">PREMIUM</span>
         @elseif($p->badge === 'new')
-          <span class="absolute top-3 left-3 z-10 bg-tan text-white text-[10px] font-semibold tracking-widest uppercase px-2 py-1">{{ __('messages.new_badge') }}</span>
+        <span style="position:absolute;top:10px;left:10px;z-index:2;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(107,200,150,.85);color:#07251A">NEW</span>
         @endif
-        <img src="{{ $p->thumbnail }}" alt="{{ $p->name }}" class="w-full h-full object-cover" onerror="this.src='/IMAGE/SUPER.jpeg'">
+        <img src="{{ $p->images[0] ?? '/IMAGE/SUPER.jpeg' }}" alt="{{ $p->name }}"
+             style="width:100%;height:100%;object-fit:cover;transition:transform .4s" onerror="this.src='/IMAGE/SUPER.jpeg'">
       </div>
-      <div class="p-5">
-        <h3 class="font-serif text-lg mb-1">{{ $p->name }}</h3>
-        <p class="text-xs  leading-relaxed mb-2">{{ $p->description }}</p>
-        <p class="text-sm  mb-4">Rp {{ number_format($p->price, 0, ',', '.') }}</p>
-
-        
+      <!-- INFO -->
+      <div style="padding:18px 16px 20px">
+        <h3 class="serif" style="font-size:17px;font-weight:700;color:#1C2B3A;margin:0 0 4px">{{ $p->name }}</h3>
+        <p style="font-size:12px;color:#4A6375;margin:0 0 6px;line-height:1.6">{{ Str::limit($p->description, 60) }}</p>
+        <p style="font-size:14px;font-weight:700;color:#6BAED6;margin:0 0 14px">Rp {{ number_format($p->price,0,',','.') }}</p>
         <form method="POST" action="{{ route('cart.add') }}">
           @csrf
           <input type="hidden" name="product_id" value="{{ $p->id }}">
-          <button type="submit"
-            style="width:100%;background:#C4975A;color:#0E1508;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:10px 0;border:none;cursor:pointer;font-weight:600;border-radius:6px;transition:opacity .2s" onmouseover="this.style.opacity=.85" onmouseout="this.style.opacity=1">
-            {{ __('messages.add_cart') }}
-          </button>
+          <button type="submit" style="width:100%;padding:11px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:#6BAED6;color:#0D1B2A;border:none;border-radius:8px;cursor:pointer;transition:opacity .2s" onmouseover="this.style.opacity=.8" onmouseout="this.style.opacity=1">@lang('messages.add_cart')</button>
         </form>
-
       </div>
     </div>
     @endforeach
+    </div>
+    @if($products->isEmpty())
+    <div style="text-align:center;padding:80px 20px;color:#4A6375;font-size:14px">Belum ada produk tersedia.</div>
+    @endif
   </div>
 </section>
 

@@ -20,7 +20,7 @@
   <div style="position:absolute;inset:0;background-image:url('/IMAGE/SUPER.jpeg');background-size:cover;background-position:center;opacity:.5"></div>
   <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,14,24,.78) 0%,rgba(8,14,24,.28) 50%,rgba(8,14,24,.82) 100%)"></div>
   <div style="position:relative;z-index:2;text-align:center;padding:0 20px;max-width:680px">
-    <p style="font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:#6BAED6;margin:0 0 20px">Dari Alam untuk Kualitas</p>
+    <p style="font-size:14px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:#6BAED6;margin:0 0 24px;text-shadow:0 0 30px rgba(107,174,214,.5)">Dari Alam untuk Kualitas</p>
     <h1 class="serif" style="font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.08;color:#fff;font-weight:700;margin:0 0 24px">Kemurnian dalam<br>Setiap Sarang</h1>
     <p style="font-size:15px;color:rgba(255,255,255,.58);max-width:440px;margin:0 auto 40px;line-height:1.9">Dipanen dengan penuh kehati-hatian dari sarang walet pilihan untuk menjaga kualitas terbaik.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
