@@ -8,7 +8,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $featured = Product::where('is_active', true)->take(3)->get();
-        return view('home', compact('featured'));
+        $featuredProducts = Product::where('is_active', true)->take(4)->get();
+        $totalProducts = Product::count();
+        $activeProducts = Product::where('is_active', true)->count();
+        return view('home', compact('featuredProducts', 'totalProducts', 'activeProducts'));
     }
 }
