@@ -1,4 +1,12 @@
 @extends('layouts.app')
+@section('head')
+<style>
+@media(max-width:767px){
+  .co-outer-grid{grid-template-columns:1fr!important}
+  .co-summary-wrap{position:static!important;top:auto!important}
+}
+</style>
+@endsection
 @section('title','Checkout')
 @section('content')
 <div style="background:#F7F9FB;min-height:80vh;padding:40px 24px;">
@@ -18,7 +26,7 @@
 
   <form method="POST" action="{{ route('checkout.store') }}">
     @csrf
-    <div style="display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start;">
+    <div class="co-outer-grid" style="display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start;">
 
       <div>
         <h2 style="display:flex;align-items:center;gap:12px;font-size:17px;font-weight:500;color:#1C2B3A;margin-bottom:20px;">
@@ -97,7 +105,7 @@
         <p style="font-size:11px;color:#4A6375;margin-top:10px;">Transaksi dienkripsi SSL yang aman.</p>
       </div>
 
-      <div style="background:#fff;border:1.5px solid rgba(107,174,214,.2);border-radius:12px;padding:24px;position:sticky;top:20px;">
+      <div class="co-summary-wrap" style="background:#fff;border:1.5px solid rgba(107,174,214,.2);border-radius:12px;padding:24px;position:sticky;top:80px;">
         <h3 style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#1C2B3A;margin-bottom:20px;">Order Summary</h3>
         @foreach($cart as $item)
         <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px;">
