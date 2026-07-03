@@ -1,3 +1,0 @@
-Simpan file logo kamu dengan nama:
-  logo.png
-di folder ini: public/IMAGE/logo.png

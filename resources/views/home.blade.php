@@ -48,8 +48,8 @@
 @endfor
 </div></div>
 
-<section style="background:#0D3535;padding:0">
- <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)">
+<section style="background:#0D3535;padding:48px 24px">
+ <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);text-align:center">
  <div class="stat-card"><p class="serif" style="font-size:2.4rem;font-weight:700;color:#C9A84C;margin-bottom:4px">10+</p><p style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28)">Tahun Pengalaman</p></div>
  <div class="stat-card"><p class="serif" style="font-size:2.4rem;font-weight:700;color:#C9A84C;margin-bottom:4px">50+</p><p style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28)">Varian Produk</p></div>
  <div class="stat-card"><p class="serif" style="font-size:2.4rem;font-weight:700;color:#C9A84C;margin-bottom:4px">1K+</p><p style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28)">Pelanggan Puas</p></div>
