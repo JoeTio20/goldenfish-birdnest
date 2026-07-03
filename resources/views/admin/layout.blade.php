@@ -11,25 +11,25 @@ body{background:#0C1928;font-family:'Inter',sans-serif;margin:0;color:#D8E4ED;ov
 .serif{font-family:'Cormorant Garamond',serif}
 #sidebar{background:#07111C;border-right:1px solid rgba(255,255,255,.06);width:215px;min-height:100vh;flex-shrink:0}
 .nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;font-size:12px;color:rgba(255,255,255,.35);text-decoration:none;transition:all .15s;margin:2px 8px}
-.nav-item:hover{background:rgba(107,174,214,.08);color:#6BAED6}
-.nav-item.active{background:rgba(107,174,214,.14);color:#6BAED6;font-weight:600;border-left:2px solid #6BAED6;padding-left:10px}
+.nav-item:hover{background:rgba(200,168,76,.08);color:#C9A84C}
+.nav-item.active{background:rgba(200,168,76,.14);color:#C9A84C;font-weight:600;border-left:2px solid #C9A84C;padding-left:10px}
 .nav-item svg{width:15px;height:15px;flex-shrink:0}
 #bottom-nav{display:none}
-@media(max-width:767px){#bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#07111C;border-top:1px solid rgba(107,174,214,.12);z-index:50;padding-bottom:env(safe-area-inset-bottom)}.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 4px 11px;gap:3px;text-decoration:none;color:rgba(255,255,255,.28);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:color .15s}.bnav-item.active,.bnav-item:hover{color:#6BAED6}.bnav-item svg{width:20px;height:20px}#main-content{padding-bottom:72px}#sidebar{display:none!important}#mobile-topbar{display:flex!important}}
+@media(max-width:767px){#bottom-nav{display:flex;position:fixed;bottom:0;left:0;right:0;background:#07111C;border-top:1px solid rgba(200,168,76,.12);z-index:50;padding-bottom:env(safe-area-inset-bottom)}.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:9px 4px 11px;gap:3px;text-decoration:none;color:rgba(255,255,255,.28);font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:color .15s}.bnav-item.active,.bnav-item:hover{color:#C9A84C}.bnav-item svg{width:20px;height:20px}#main-content{padding-bottom:72px}#sidebar{display:none!important}#mobile-topbar{display:flex!important}}
 @media(min-width:768px){#mobile-topbar{display:none}#sidebar{display:flex}}
 #mobile-topbar{display:none;align-items:center;justify-content:space-between;padding:12px 16px;background:#07111C;border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;z-index:40}
-.stat-card{background:rgba(255,255,255,.03);border:1px solid rgba(107,174,214,.12);border-radius:14px;padding:22px 20px}
+.stat-card{background:rgba(255,255,255,.03);border:1px solid rgba(200,168,76,.12);border-radius:14px;padding:22px 20px}
 .data-table{width:100%;font-size:13px;border-collapse:collapse}
 .data-table th{padding:10px 16px;text-align:left;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);border-bottom:1px solid rgba(255,255,255,.06)}
 .data-table td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.04)}
-.data-table tr:hover td{background:rgba(107,174,214,.04)}
+.data-table tr:hover td{background:rgba(200,168,76,.04)}
 .badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:10px;font-weight:600}
 </style>
 </head>
 <body>
 <div id="mobile-topbar">
   <div class="flex items-center gap-2">
-    <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:#6BAED6"><svg width="13" height="13" fill="white" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+    <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:#C9A84C"><svg width="13" height="13" fill="white" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
     <span class="serif text-[15px] font-bold text-white">Admin</span>
   </div>
   <form method="POST" action="{{ route('admin.logout') }}">@csrf<button type="submit" style="font-size:10px;font-weight:600;color:rgba(255,100,100,.8);text-transform:uppercase;letter-spacing:.1em;background:none;border:none;cursor:pointer">Logout</button></form>
@@ -53,8 +53,8 @@ body{background:#0C1928;font-family:'Inter',sans-serif;margin:0;color:#D8E4ED;ov
     </a>
   </nav>
   <div style="padding:12px;border-top:1px solid rgba(255,255,255,.06)">
-    <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(107,174,214,.1)">
-      <div style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#6BAED6;color:#07111C;flex-shrink:0">{{ substr(session('admin_name','A'),0,1) }}</div>
+    <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(200,168,76,.1)">
+      <div style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#C9A84C;color:#07111C;flex-shrink:0">{{ substr(session('admin_name','A'),0,1) }}</div>
       <div style="min-width:0;flex:1">
         <p style="font-size:12px;font-weight:600;color:#fff;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ session('admin_name','Admin') }}</p>
         <form method="POST" action="{{ route('admin.logout') }}">@csrf<button type="submit" style="font-size:10px;color:rgba(255,100,100,.7);font-weight:600;text-transform:uppercase;letter-spacing:.05em;background:none;border:none;cursor:pointer;padding:0">Logout</button></form>
@@ -70,7 +70,7 @@ body{background:#0C1928;font-family:'Inter',sans-serif;margin:0;color:#D8E4ED;ov
   <main style="flex:1;padding:24px 20px" class="md:p-8">
     <div class="md:hidden" style="margin-bottom:20px"><h1 class="serif" style="font-size:20px;font-weight:600;color:#fff;margin:0">@yield('header','Dashboard')</h1></div>
     @if(session('success'))
-    <div style="display:flex;align-items:center;gap:8px;font-size:13px;padding:12px 16px;border-radius:10px;margin-bottom:20px;background:rgba(107,174,214,.08);border:1px solid rgba(107,174,214,.2);color:#6BAED6">
+    <div style="display:flex;align-items:center;gap:8px;font-size:13px;padding:12px 16px;border-radius:10px;margin-bottom:20px;background:rgba(200,168,76,.08);border:1px solid rgba(200,168,76,.2);color:#C9A84C">
       <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>{{ session('success') }}
     </div>
     @endif
