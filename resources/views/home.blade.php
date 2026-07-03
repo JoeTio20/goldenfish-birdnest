@@ -12,9 +12,9 @@
 .feat-card{background:#fff;border-radius:12px;overflow:hidden;border:1px solid rgba(200,168,76,.15);transition:transform .25s,box-shadow .25s}
 .feat-card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(13,53,53,.1)}
 .stat-card{text-align:center;padding:32px 20px;border-right:1px solid rgba(255,255,255,.06)}
-.stat-card:last-child{border-right:none}
+.stat-card:last-child{border-right:none}.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-@media(max-width:767px){.feat-grid{grid-template-columns:repeat(2,1fr)}.stat-card{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}.about-grid{grid-template-columns:1fr}}
+@media(max-width:767px){.feat-grid{grid-template-columns:repeat(2,1fr)}.stat-grid{grid-template-columns:repeat(2,1fr)}.stat-card{border-right:none;border-bottom:1px solid rgba(255,255,255,.06)}.about-grid{grid-template-columns:1fr}}
 @media(max-width:479px){.feat-grid{grid-template-columns:1fr}}
 </style>
 @endsection
@@ -49,7 +49,7 @@
 </div></div>
 
 <section style="background:#0D3535;padding:48px 24px">
- <div style="max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);text-align:center">
+ <div class="stat-grid" style="max-width:900px;margin:0 auto">
  <div class="stat-card"><p class="serif" style="font-size:2.4rem;font-weight:700;color:#C9A84C;margin-bottom:4px">10+</p><p style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28)">Tahun Pengalaman</p></div>
  <div class="stat-card"><p class="serif" style="font-size:2.4rem;font-weight:700;color:#C9A84C;margin-bottom:4px">50+</p><p style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28)">Varian Produk</p></div>
  <div class="stat-card"><p class="serif" style="font-size:2.4rem;font-weight:700;color:#C9A84C;margin-bottom:4px">1K+</p><p style="font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28)">Pelanggan Puas</p></div>
