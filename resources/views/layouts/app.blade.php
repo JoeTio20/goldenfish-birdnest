@@ -46,9 +46,9 @@ a{text-decoration:none}
   </div>
   <div id="snav-right">
    <div style="display:flex;gap:6px;align-items:center">
-   <a href=" route('lang.switch', 'id') " class="lang-pill @if(app()->getLocale()==='id') active @endif" @if(app()->getLocale()==='id') style="border-color:#C9A84C;color:#C9A84C" @endif>ID</a>
-   <a href=" route('lang.switch', 'en') " class="lang-pill @if(app()->getLocale()==='en') active @endif" @if(app()->getLocale()==='en') style="border-color:#C9A84C;color:#C9A84C" @endif>EN</a>
-   <a href=" route('lang.switch', 'zh') " class="lang-pill @if(app()->getLocale()==='zh') active @endif" @if(app()->getLocale()==='zh') style="border-color:#C9A84C;color:#C9A84C" @endif>中文</a>
+   <a href="{{ route('lang.switch', 'id') }}" class="lang-pill @if(app()->getLocale()==='id') active @endif" @if(app()->getLocale()==='id') style="border-color:#C9A84C;color:#C9A84C" @endif>ID</a>
+   <a href="{{ route('lang.switch', 'en') }}" class="lang-pill @if(app()->getLocale()==='en') active @endif" @if(app()->getLocale()==='en') style="border-color:#C9A84C;color:#C9A84C" @endif>EN</a>
+   <a href="{{ route('lang.switch', 'zh') }}" class="lang-pill @if(app()->getLocale()==='zh') active @endif" @if(app()->getLocale()==='zh') style="border-color:#C9A84C;color:#C9A84C" @endif>中文</a>
    </div>
    <a href="{{ route('cart.index') }}" class="snav-icon" style="position:relative">
     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
@@ -67,9 +67,9 @@ a{text-decoration:none}
   <a href="{{ route('philosophy') }}" class="snav-link">@lang('messages.nav_philosophy')</a>
   <a href="{{ route('product') }}" class="snav-link">@lang('messages.nav_product')</a>
   <div style="height:1px;background:rgba(255,255,255,.07)"></div>
-  <a href=" route('lang.switch','en') " class="snav-link @if(app()->getLocale()==='id') active @endif">🇮🇩 Indonesia</a>
-  <a href=" route('lang.switch','id') " class="snav-link @if(app()->getLocale()==='en') active @endif">🇬🇧 English</a>
-  <a href=" route('lang.switch', 'zh') " class="snav-link @if(app()->getLocale()==='zh') active @endif">🇨🇳 中文</a>
+  <a href="{{ route('lang.switch', 'id') }}" class="snav-link @if(app()->getLocale()==='id') active @endif">🇮🇩 Indonesia</a>
+  <a href="{{ route('lang.switch', 'en') }}" class="snav-link @if(app()->getLocale()==='en') active @endif">🇬🇧 English</a>
+  <a href="{{ route('lang.switch', 'zh') }}" class="snav-link @if(app()->getLocale()==='zh') active @endif">🇨🇳 中文</a>
  </div></div>
 </nav>
 @yield('content')
