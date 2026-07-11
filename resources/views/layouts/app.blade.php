@@ -45,15 +45,11 @@ a{text-decoration:none}
    <a href="{{ route('product') }}" class="snav-link {{ request()->routeIs('product') ? 'active' : '' }}">@lang('messages.nav_product')</a>
   </div>
   <div id="snav-right">
-   @if(app()->getLocale()==='id')
-   <a href="{{ route('lang.switch','en') }}" class="lang-pill">
-    <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>EN
-   </a>
-   @else
-   <a href="{{ route('lang.switch','id') }}" class="lang-pill">
-    <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 014-10z"/></svg>ID
-   </a>
-   @endif
+   <div style="display:flex;gap:6px;align-items:center">
+   <a href=" route('lang.switch', 'id') " class="lang-pill @if(app()->getLocale()==='id') active @endif" @if(app()->getLocale()==='id') style="border-color:#C9A84C;color:#C9A84C" @endif>ID</a>
+   <a href=" route('lang.switch', 'en') " class="lang-pill @if(app()->getLocale()==='en') active @endif" @if(app()->getLocale()==='en') style="border-color:#C9A84C;color:#C9A84C" @endif>EN</a>
+   <a href=" route('lang.switch', 'zh') " class="lang-pill @if(app()->getLocale()==='zh') active @endif" @if(app()->getLocale()==='zh') style="border-color:#C9A84C;color:#C9A84C" @endif>中文</a>
+   </div>
    <a href="{{ route('cart.index') }}" class="snav-icon" style="position:relative">
     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
     <span id="cart-badge" style="position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;background:#C9A84C;color:#0D3535;font-size:9px;font-weight:700;display:{{ (session('cart')&&count(session('cart'))) ? 'flex' : 'none' }};align-items:center;justify-content:center">{{ count(session('cart',[]) ) }}</span>
@@ -71,11 +67,9 @@ a{text-decoration:none}
   <a href="{{ route('philosophy') }}" class="snav-link">@lang('messages.nav_philosophy')</a>
   <a href="{{ route('product') }}" class="snav-link">@lang('messages.nav_product')</a>
   <div style="height:1px;background:rgba(255,255,255,.07)"></div>
-  @if(app()->getLocale()==='id')
-  <a href="{{ route('lang.switch','en') }}" class="snav-link">Switch to English</a>
-  @else
-  <a href="{{ route('lang.switch','id') }}" class="snav-link">Ganti ke Indonesia</a>
-  @endif
+  <a href=" route('lang.switch','en') " class="snav-link @if(app()->getLocale()==='id') active @endif">🇮🇩 Indonesia</a>
+  <a href=" route('lang.switch','id') " class="snav-link @if(app()->getLocale()==='en') active @endif">🇬🇧 English</a>
+  <a href=" route('lang.switch', 'zh') " class="snav-link @if(app()->getLocale()==='zh') active @endif">🇨🇳 中文</a>
  </div></div>
 </nav>
 @yield('content')
