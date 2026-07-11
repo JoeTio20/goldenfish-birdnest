@@ -17,6 +17,7 @@ Route::get('/lang/{locale}', [LanguageController::class, 'switchLang'])->name('l
 Route::get('/',           [HomeController::class,       'index'])->name('home');
 Route::get('/philosophy', [PhilosophyController::class, 'index'])->name('philosophy');
 Route::get('/product',    [ProductController::class,    'index'])->name('product');
+Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 
 Route::get('/cart',                  [CartController::class, 'index' ])->name('cart.index');
 Route::post('/cart/add',             [CartController::class, 'add'   ])->name('cart.add');

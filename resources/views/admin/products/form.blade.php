@@ -41,7 +41,12 @@
       </div>
     </div>
 
-    <!-- Kategori & Badge -->
+            <div>
+          <label class="block text-xs font-medium text-gray-500 uppercase tracking-wider mb-1.5">Stok <span class="text-red-400">*</span></label>
+          <input type="number" name="stock" value="<?php echo e(old('stock', $product->stock ?? 10)); ?>" required min="0"
+                 class="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-300 transition">
+        </div>
+<!-- Kategori & Badge -->
     <div class="bg-white rounded-xl border border-gray-200 p-6 mb-5 shadow-sm">
       <h3 class="text-sm font-semibold text-gray-800 mb-5 pb-3 border-b border-gray-100">Kategori & Label</h3>
       <div class="grid grid-cols-3 gap-4">
@@ -134,10 +139,10 @@
 <script>
 function showFileNames(input, labelId) {
   const label = document.getElementById(labelId);
-  if (input.files && input.files.length > 0) 
+  if (input.files && input.files.length > 0) {
     const names = Array.from(input.files).map(f => f.name).join(', ');
     label.textContent = '✅ ' + names;
-  
+  }
 }
 </script>
 @endsection

@@ -40,6 +40,11 @@
           <input type="text" name="whatsapp" value="{{ old('whatsapp') }}" placeholder="+62 812..." required
                  style="width:100%;border:none;border-bottom:1.5px solid rgba(200,168,76,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1A3D3A;box-sizing:border-box;">
         </div>
+        <div style="margin-bottom:18px;">
+          <label style="display:block;font-size:12px;color:#4A6B6B;margin-bottom:6px;">Email</label>
+          <input type="email" name="email" value="<?php echo e(old('email')); ?>" placeholder="email@contoh.com" required
+                 style="width:100%;border:none;border-bottom:1.5px solid rgba(200,168,76,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1A3D3A;box-sizing:border-box;">
+        </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:18px;">
           <div>
             <label style="display:block;font-size:12px;color:#4A6B6B;margin-bottom:6px;">Nama Depan</label>

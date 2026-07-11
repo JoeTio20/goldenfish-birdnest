@@ -5,73 +5,19 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function index()
-    {
-        $cart     = session('cart', []);
-        $subtotal = array_sum(array_map(fn($i) => $i['price'] * $i['qty'], $cart));
-        $related  = Product::where('is_active', true)->inRandomOrder()->take(4)->get();
-        return view('cart', compact('cart', 'subtotal', 'related'));
-    }
-
+    public function index(){ $cart=session('cart',[]); $subtotal=array_sum(array_map(fn($i)=>$i['price']*$i['qty'],$cart)); $related=Product::where('is_active',true)->inRandomOrder()->take(4)->get(); return view('cart',compact('cart','subtotal','related')); }
     public function add(Request $request)
     {
-        $product = Product::findOrFail($request->product_id);
-        $cart    = session('cart', []);
-        $id      = $product->id;
-
-        if (isset($cart[$id])) {
-            $cart[$id]['qty']++;
-        } else {
-            $cart[$id] = [
-                'id'    => $product->id,
-                'name'  => $product->name,
-                'price' => $product->price,
-                'image' => $product->thumbnail,
-                'desc'  => $product->description ?? '',
-                'qty'   => 1,
-            ];
-        }
-
-        session(['cart' => $cart]);
-        $cartCount = array_sum(array_column($cart, 'qty'));
-
-        if ($request->ajax() || $request->wantsJson()) {
-            return response()->json([
-                'success' => true,
-                'message' => 'Produk ditambahkan ke keranjang!',
-                'cartCount' => $cartCount,
-                'productName' => $product->name,
-            ]);
-        }
-
-        return back()->with('cart_success', 'Produk ditambahkan ke keranjang!');
+        $product=Product::findOrFail($request->product_id);
+        if (($product->stock ?? 0) <= 0) return back()->with('cart_error','Stok produk habis.');
+        $cart=session('cart',[]); $id=$product->id; $current=$cart[$id]['qty'] ?? 0;
+        if ($current + 1 > $product->stock) return back()->with('cart_error','Jumlah melebihi stok tersedia.');
+        if(isset($cart[$id])) $cart[$id]['qty']++; else $cart[$id]=['id'=>$product->id,'name'=>$product->name,'price'=>$product->price,'image'=>$product->thumbnail,'desc'=>$product->description??'','qty'=>1];
+        session(['cart'=>$cart]); $cartCount=array_sum(array_column($cart,'qty'));
+        if($request->ajax()||$request->wantsJson()) return response()->json(['success'=>true,'message'=>'Produk ditambahkan ke keranjang!','cartCount'=>$cartCount,'productName'=>$product->name]);
+        return back()->with('cart_success','Produk ditambahkan ke keranjang!');
     }
-
-    public function update(Request $request)
-    {
-        $cart = session('cart', []);
-        $id   = $request->product_id;
-        $qty  = max(1, (int) $request->qty);
-
-        if (isset($cart[$id])) {
-            $cart[$id]['qty'] = $qty;
-        }
-
-        session(['cart' => $cart]);
-        return redirect()->route('cart.index');
-    }
-
-    public function remove(Request $request)
-    {
-        $cart = session('cart', []);
-        unset($cart[$request->product_id]);
-        session(['cart' => $cart]);
-        return redirect()->route('cart.index');
-    }
-
-    public function clear()
-    {
-        session()->forget('cart');
-        return redirect()->route('cart.index');
-    }
+    public function update(Request $request){ $cart=session('cart',[]); $id=$request->product_id; $qty=max(1,(int)$request->qty); if(isset($cart[$id])){ $product=Product::find($id); if($product) $qty=min($qty, max(1,(int)$product->stock)); $cart[$id]['qty']=$qty; } session(['cart'=>$cart]); return redirect()->route('cart.index'); }
+    public function remove(Request $request){ $cart=session('cart',[]); unset($cart[$request->product_id]); session(['cart'=>$cart]); return redirect()->route('cart.index'); }
+    public function clear(){ session()->forget('cart'); return redirect()->route('cart.index'); }
 }
