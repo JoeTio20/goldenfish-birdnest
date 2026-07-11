@@ -12,7 +12,7 @@ $waText = urlencode("Halo Goldenfish Birdnest, saya ingin menanyakan status pesa
     <p style="font-size:13px;color:#A08070;margin-bottom:24px;"><?php echo e(__('messages.order_success_desc', ['name' => $order->full_name])); ?></p>
     <div style="background:#fff;border:1px solid #EDE5DC;border-radius:12px;padding:22px;text-align:left;margin-bottom:24px;">
       <p style="font-size:11px;font-weight:700;color:#A08070;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;"><?php echo e(__('messages.order_number')); ?></p>
-      <p style="font-size:24px;font-weight:800;color:#0D3535;letter-spacing:.04em;margin-bottom:16px"><?php echo e($order->order_number ?? ('GBN-'.$order->id)); ?></p>
+      <p style="font-size:24px;font-weight:800;color:#0D3535;letter-spacing:.04em;margin-bottom:16px"><?php echo e($order->order_number ?? ('GBN-' . $order->created_at->format('Ymd') . '-' . str_pad($order->id, 4, '0', STR_PAD_LEFT))); ?></p>
       <p style="font-size:13px;color:#6B5B4E;margin-bottom:6px;"><?php echo e(__('messages.total')); ?>: <strong style="color:#2C1810;">Rp <?php echo e(number_format($order->total,0,',','.')); ?></strong></p>
       <p style="font-size:13px;color:#6B5B4E;margin-bottom:14px;"><?php echo e(__('messages.status')); ?>: <strong style="color:#2C1810;"><?php echo e($order->display_status); ?></strong></p>
       <div style="border-top:1px solid #EDE5DC;padding-top:14px;margin-top:14px">

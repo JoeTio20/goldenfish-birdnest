@@ -55,7 +55,7 @@
    </form>
    <form method="POST" action="{{ route('cart.remove') }}">@csrf
     <input type="hidden" name="product_id" value="{{ $id }}">
-    <button class="qty-btn" style="width:auto;padding:6px 12px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#4A6B6B;border:1px solid rgba(200,168,76,.2);border-radius:8px" onmouseover="this.style.color='#c0392b';this.style.borderColor='rgba(192,57,43,.3)'" onmouseout="this.style.color='#4A6B6B';this.style.borderColor='rgba(200,168,76,.2)'">Hapus</button>
+    <button class="qty-btn" style="width:auto;padding:6px 12px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#4A6B6B;border:1px solid rgba(200,168,76,.2);border-radius:8px" onmouseover="this.style.color='#c0392b';this.style.borderColor='rgba(192,57,43,.3)'" onmouseout="this.style.color='#4A6B6B';this.style.borderColor='rgba(200,168,76,.2)'"><?php echo e(__('messages.remove')); ?></button>
    </form>
   </div>
  </div>
