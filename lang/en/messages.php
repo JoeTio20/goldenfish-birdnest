@@ -8,8 +8,8 @@ return [
     'lang_switch'    => 'ID',
 
     // HERO
-    'hero_label' => 'From Nature, For Quality'S NEST',
-    'hero_title' => 'Purity in Every Nest's Nest for International Standards.',
+    'hero_label' => 'From Nature, For Quality',
+    'hero_title' => 'Purity in Every Nest',
     'hero_shop'  => 'EXPLORE PRODUCTS',
     'hero_phil'  => 'OUR PHILOSOPHY',
 
