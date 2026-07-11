@@ -18,7 +18,7 @@
 <div style="background:#F5F8F6;min-height:80vh;padding:32px 24px">
 <div style="max-width:1100px;margin:0 auto">
 <p style="font-size:11px;color:#4A6B6B;margin-bottom:20px">
- <a href="{{ route('home') }}" style="color:#4A6B6B">Home</a>
+ <a href="{{ route('home') }}" style="color:#4A6B6B"><?php echo e(__('messages.home')); ?></a>
  <span style="margin:0 6px">&rsaquo;</span>
  <span style="color:#1A3D3A;font-weight:500"><?php echo e(__('messages.cart_breadcrumb')); ?></span>
 </p>
@@ -45,7 +45,7 @@
    <p class="serif" style="font-size:16px;font-weight:600;color:#1A3D3A;margin:0">{{ $item['name'] }}</p>
    <p style="font-size:14px;font-weight:700;color:#1A3D3A;white-space:nowrap;margin:0">Rp {{ number_format($item['price']*$item['qty'],0,',','.') }}</p>
   </div>
-  <p style="font-size:12px;color:#4A6B6B;margin-bottom:14px">Rp {{ number_format($item['price'],0,',','.') }} / pcs</p>
+  <p style="font-size:12px;color:#4A6B6B;margin-bottom:14px">Rp {{ number_format($item['price'],0,',','.') }} / <?php echo e(__('messages.unit_pcs')); ?></p>
   <div style="display:flex;justify-content:space-between;align-items:center">
    <form method="POST" action="{{ route('cart.update') }}" class="qty-form">@csrf
     <input type="hidden" name="product_id" value="{{ $id }}">
@@ -70,8 +70,8 @@
  <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6B6B;margin-bottom:16px"><span><?php echo e(__('messages.shipping')); ?></span><span style="color:#C9A84C"><?php echo e(__('messages.calculated_at_checkout')); ?></span></div>
  <div style="height:1px;background:rgba(200,168,76,.12);margin-bottom:16px"></div>
  <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:#1A3D3A;margin-bottom:20px"><span><?php echo e(__('messages.total')); ?></span><span>Rp {{ number_format($subtotal,0,',','.') }}</span></div>
- <a href="{{ route('checkout.index') }}" style="display:block;text-align:center;padding:14px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border-radius:100px;background:#0D3535;color:#fff;margin-bottom:10px" onmouseover="this.style.background='#C9A84C';this.style.color='#0D3535'" onmouseout="this.style.background='#0D3535';this.style.color='#fff'">Lanjut Checkout</a>
- <a href="{{ route('product') }}" style="display:block;text-align:center;padding:13px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:100px;border:1.5px solid rgba(13,53,53,.2);color:#1A3D3A">Lanjut Belanja</a>
+ <a href="{{ route('checkout.index') }}" style="display:block;text-align:center;padding:14px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border-radius:100px;background:#0D3535;color:#fff;margin-bottom:10px" onmouseover="this.style.background='#C9A84C';this.style.color='#0D3535'" onmouseout="this.style.background='#0D3535';this.style.color='#fff'"><?php echo e(__('messages.continue_checkout')); ?></a>
+ <a href="{{ route('product') }}" style="display:block;text-align:center;padding:13px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:100px;border:1.5px solid rgba(13,53,53,.2);color:#1A3D3A"><?php echo e(__('messages.continue_shopping')); ?></a>
  <p style="font-size:10px;color:#4A6B6B;text-align:center;margin-top:14px">&#x1F512; Transaksi dienkripsi SSL 256-bit</p>
 </div>
 
@@ -80,8 +80,8 @@
 @if(isset($related) && $related->count())
 <div style="margin-top:56px">
  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px">
-  <h2 class="serif" style="font-size:1.6rem;font-weight:700;color:#1A3D3A">Lengkapi Pesananmu</h2>
-  <a href="{{ route('product') }}" style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#C9A84C;border-bottom:1px solid #C9A84C">Lihat Semua</a>
+  <h2 class="serif" style="font-size:1.6rem;font-weight:700;color:#1A3D3A"><?php echo e(__('messages.complete_your_order')); ?></h2>
+  <a href="{{ route('product') }}" style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#C9A84C;border-bottom:1px solid #C9A84C"><?php echo e(__('messages.view_all')); ?></a>
  </div>
  <div class="related-grid">
  @foreach($related as $p)

@@ -124,7 +124,7 @@ a{text-decoration:none}
 </style>
 <div id="cart-toast">
   <svg width="18" height="18" fill="none" stroke="#C9A84C" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-  <span id="cart-toast-msg">Ditambahkan ke keranjang!</span>
+  <span id="cart-toast-msg"><?php echo e(__('messages.added_to_cart')); ?></span>
   <button id="cart-toast-close" onclick="hideToast()">&#x2715;</button>
 </div>
 <script>
@@ -162,12 +162,12 @@ document.addEventListener('DOMContentLoaded',function(){
     .then(function(r){return r.json();})
     .then(function(res){
               if(res.success){
-        showToast(res.productName+' ditambahkan ke keranjang!');
+        showToast(res.productName+' <?php echo e(strtolower(__('messages.added_to_cart'))); ?>');
         updateCartBadge(res.cartCount);
         var btn=form.querySelector('button[type="submit"]');
         if(btn){
           var orig=btn.textContent;
-          btn.textContent='✓ Ditambahkan!';
+          btn.textContent='<?php echo e(__('messages.added_button')); ?>';
           btn.style.setProperty('background','#16a34a','important');
           btn.style.setProperty('color','#fff','important');
           setTimeout(function(){

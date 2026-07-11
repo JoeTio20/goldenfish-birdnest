@@ -24,7 +24,7 @@ $waText = urlencode("Halo Goldenfish Birdnest, saya ingin menanyakan status pesa
     </div>
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
       <a href="https://wa.me/<?php echo e($waNumber); ?>?text=<?php echo e($waText); ?>" target="_blank" style="display:inline-block;background:#16a34a;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:14px 24px;text-decoration:none;border-radius:8px;">Tanya Status via WhatsApp</a>
-      <a href="<?php echo e(route('home')); ?>" style="display:inline-block;background:#2C1810;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:14px 24px;text-decoration:none;border-radius:8px;">Back to Home</a>
+      <a href="<?php echo e(route('home')); ?>" style="display:inline-block;background:#2C1810;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:14px 24px;text-decoration:none;border-radius:8px;"><?php echo e(__('messages.back_to_home')); ?></a>
     </div>
   </div>
 </div>

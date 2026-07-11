@@ -8,15 +8,15 @@
 }
 </style>
 @endsection
-@section('title','Checkout')
+@section('title', __('messages.checkout_title'))
 @section('content')
 <div style="background:#F5F8F6;min-height:80vh;padding:40px 24px;">
 
   <h1 style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;color:#1A3D3A;margin-bottom:6px;"><?php echo e(__('messages.checkout_title')); ?></h1>
   <p style="font-size:12px;color:#4A6B6B;margin-bottom:32px;">
-    <a href="{{ route('cart.index') }}" style="color:#4A6B6B;text-decoration:none;">Cart</a>
+    <a href="{{ route('cart.index') }}" style="color:#4A6B6B;text-decoration:none;"><?php echo e(__('messages.cart_breadcrumb')); ?></a>
     <span style="margin:0 6px;">&rsaquo;</span>
-    <strong style="color:#1A3D3A;">Information &amp; Payment</strong>
+    <strong style="color:#1A3D3A;"><?php echo e(__('messages.information_payment')); ?></strong>
   </p>
 
   @if($errors->any())
@@ -36,7 +36,7 @@
         </h2>
 
         <div style="margin-bottom:18px;">
-          <label style="display:block;font-size:12px;color:#4A6B6B;margin-bottom:6px;">Nomor WhatsApp</label>
+          <label style="display:block;font-size:12px;color:#4A6B6B;margin-bottom:6px;"><?php echo e(__('messages.whatsapp_number')); ?></label>
           <input type="text" name="whatsapp" value="{{ old('whatsapp') }}" placeholder="+62 812..." required
                  style="width:100%;border:none;border-bottom:1.5px solid rgba(200,168,76,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1A3D3A;box-sizing:border-box;">
         </div>
@@ -59,7 +59,7 @@
         </div>
         <div style="margin-bottom:18px;">
           <label style="display:block;font-size:12px;color:#4A6B6B;margin-bottom:6px;"><?php echo e(__('messages.shipping_address')); ?></label>
-          <input type="text" name="address" value="{{ old('address') }}" placeholder="Nama jalan dan nomor rumah" required
+          <input type="text" name="address" value="{{ old('address') }}" placeholder="<?php echo e(__('messages.address_placeholder')); ?>" required
                  style="width:100%;border:none;border-bottom:1.5px solid rgba(200,168,76,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1A3D3A;box-sizing:border-box;">
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;">
@@ -83,7 +83,7 @@
         <label id="lbl-midtrans" style="display:flex;justify-content:space-between;align-items:center;border:1.5px solid #C9A84C;border-radius:10px;padding:14px 16px;cursor:pointer;margin-bottom:10px;">
           <div style="display:flex;align-items:center;gap:12px;">
             <input type="radio" name="payment_method" value="midtrans" checked style="accent-color:#1A3D3A;width:16px;height:16px;">
-            <span style="font-size:14px;font-weight:500;color:#1A3D3A;">Kartu / E-Wallet (Midtrans)</span>
+            <span style="font-size:14px;font-weight:500;color:#1A3D3A;"><?php echo e(__('messages.card_ewallet')); ?></span>
           </div>
           <svg width="20" height="20" fill="none" stroke="#A08070" stroke-width="1.5" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
         </label>
