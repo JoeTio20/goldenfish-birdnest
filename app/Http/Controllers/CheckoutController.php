@@ -5,6 +5,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 
 class CheckoutController extends Controller
 {
@@ -16,7 +17,10 @@ class CheckoutController extends Controller
         $cart=session('cart',[]); if(empty($cart)) return redirect()->route('cart.index');
         foreach($cart as $item){ $product=Product::find($item['id']); if(!$product || !$product->is_active || $product->stock < $item['qty']) return redirect()->route('cart.index')->with('cart_error','Stok '.$item['name'].' tidak cukup.'); }
         $subtotal=array_sum(array_map(fn($i)=>$i['price']*$i['qty'],$cart));
-        $order=Order::create(['order_number'=>$this->generateOrderNumber(),'first_name'=>$request->first_name,'last_name'=>$request->last_name,'email'=>$request->email,'whatsapp'=>$request->whatsapp,'address'=>$request->address,'city'=>$request->city,'postal_code'=>$request->postal_code,'total'=>$subtotal,'payment_method'=>$request->payment_method,'status'=>'pending','items'=>array_values($cart)]);
+        $orderData = ['first_name'=>$request->first_name,'last_name'=>$request->last_name,'whatsapp'=>$request->whatsapp,'address'=>$request->address,'city'=>$request->city,'postal_code'=>$request->postal_code,'total'=>$subtotal,'payment_method'=>$request->payment_method,'status'=>'pending','items'=>array_values($cart)];
+        if (Schema::hasColumn('orders', 'order_number')) $orderData['order_number'] = $this->generateOrderNumber();
+        if (Schema::hasColumn('orders', 'email')) $orderData['email'] = $request->email;
+        $order=Order::create($orderData);
         foreach($cart as $item){ Product::where('id',$item['id'])->decrement('stock',$item['qty']); }
         $this->sendOrderEmail($order);
         session()->forget('cart'); return redirect()->route('checkout.success',$order->id);
