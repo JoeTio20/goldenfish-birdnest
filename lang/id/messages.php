@@ -47,6 +47,7 @@ return [
     'cart_checkout' => 'LANJUT KE PEMESANAN',
 
     // PRODUCT PAGE
+    'prod_label' => 'Koleksi Kami',
     'prod_title' => 'Produk Kami',
     'prod_sub'   => 'Sarang burung walet mentah pilihan dengan kualitas terbaik.',
 

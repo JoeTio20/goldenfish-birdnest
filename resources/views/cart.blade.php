@@ -39,7 +39,7 @@
 <div>
 @foreach($cart as $id => $item)
 <div class="cart-item">
- <img src="{{ $item['image'] ?? '/IMAGE/SUPER.jpeg' }}" style="width:88px;height:88px;object-fit:cover;border-radius:10px;border:1px solid rgba(200,168,76,.12);flex-shrink:0" onerror="this.src='/IMAGE/SUPER.jpeg'">
+ <img loading="lazy" decoding="async" src="{{ $item['image'] ?? '/IMAGE/SUPER.jpeg' }}" style="width:88px;height:88px;object-fit:cover;border-radius:10px;border:1px solid rgba(200,168,76,.12);flex-shrink:0" onerror="this.src='/IMAGE/SUPER.jpeg'">
  <div style="flex:1;min-width:0">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:8px">
    <p class="serif" style="font-size:16px;font-weight:600;color:#1A3D3A;margin:0">{{ $item['name'] }}</p>
@@ -87,7 +87,7 @@
  @foreach($related as $p)
  <div style="background:#fff;border-radius:12px;overflow:hidden;border:1px solid rgba(200,168,76,.12)">
   <div style="aspect-ratio:1;overflow:hidden;background:#E8F0E8">
-   <img src="{{ $p->thumbnail }}" style="width:100%;height:100%;object-fit:cover" onerror="this.src='/IMAGE/SUPER.jpeg'">
+   <img loading="lazy" decoding="async" src="{{ $p->thumbnail }}" style="width:100%;height:100%;object-fit:cover" onerror="this.src='/IMAGE/SUPER.jpeg'">
   </div>
   <div style="padding:12px">
    <p style="font-size:13px;font-weight:600;color:#1A3D3A;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ $p->name }}</p>

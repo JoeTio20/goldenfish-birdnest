@@ -47,6 +47,7 @@ return [
     'cart_checkout' => 'PROCEED TO CHECKOUT',
 
     // PRODUCT PAGE
+    'prod_label' => 'Our Collection',
     'prod_title' => 'Our Products',
     'prod_sub'   => 'Premium raw edible bird\'s nests selected for exceptional quality.',
 

@@ -26,6 +26,7 @@ return [
     'cart_continue' => '继续购物',
     'cart_subtotal' => '小计',
     'cart_checkout' => '前往结账',
+    'prod_label' => '我们的系列',
     'prod_title' => '我们的产品',
     'prod_sub'   => '精选优质天然燕窝。',
     'filter_all'    => '全部',

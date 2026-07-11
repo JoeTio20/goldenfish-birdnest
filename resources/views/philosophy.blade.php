@@ -29,7 +29,7 @@
    <p style="font-size:14px;color:#4A6B6B;line-height:1.95;margin:0 0 14px">@lang('messages.phil_p2')</p>
    <p style="font-size:14px;color:#4A6B6B;line-height:1.95;margin:0">@lang('messages.phil_p3')</p>
   </div>
-  <div><img src="/IMAGE/INDONMMIE.jpeg" alt="" style="width:100%;border-radius:14px;aspect-ratio:4/5;object-fit:cover;display:block"></div>
+  <div><img loading="lazy" decoding="async" src="/IMAGE/INDONMMIE.jpeg" alt="" style="width:100%;border-radius:14px;aspect-ratio:4/5;object-fit:cover;display:block"></div>
  </div>
  </div>
 </section>

@@ -111,7 +111,7 @@
         @foreach($cart as $item)
         <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px;">
           <div style="position:relative;flex-shrink:0;">
-            <img src="{{ $item['image'] }}" style="width:56px;height:56px;object-fit:cover;border-radius:12px;" onerror="this.src='/IMAGE/SUPER.jpeg'">
+            <img loading="lazy" decoding="async" src="{{ $item['image'] }}" style="width:56px;height:56px;object-fit:cover;border-radius:12px;" onerror="this.src='/IMAGE/SUPER.jpeg'">
             <span style="position:absolute;top:-6px;right:-6px;background:#0D3535;color:#fff;font-size:10px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;">{{ $item['qty'] }}</span>
           </div>
           <div style="flex:1;min-width:0;">

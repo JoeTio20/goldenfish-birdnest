@@ -17,7 +17,7 @@
 @section('content')
 
 <section style="background:#0D3535;padding:60px 24px 52px;text-align:center">
- <p style="font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#C9A84C;margin-bottom:14px">Koleksi Kami</p>
+ <p style="font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#C9A84C;margin-bottom:14px">@lang('messages.prod_label')</p>
  <h1 class="serif" style="font-size:clamp(2rem,5vw,3.2rem);color:#fff;font-weight:700;margin-bottom:12px">@lang('messages.prod_title')</h1>
  <p style="font-size:14px;color:rgba(255,255,255,.45);max-width:460px;margin:0 auto;line-height:1.75">@lang('messages.prod_sub')</p>
 </section>
@@ -53,7 +53,7 @@
   <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#E8F0E8;flex-shrink:0">
    @if($p->badge==='limited')<span style="position:absolute;top:10px;left:10px;z-index:2;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(200,168,76,.9);color:#0D3535">PREMIUM</span>@endif
    @if($p->badge==='new')<span style="position:absolute;top:10px;left:10px;z-index:2;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:rgba(107,200,150,.9);color:#062912">NEW</span>@endif
-   <img src="{{ $p->thumbnail }}" alt="{{ $p->name }}" style="width:100%;height:100%;object-fit:cover" onerror="this.src='/IMAGE/SUPER.jpeg'">
+   <img src="{{ $p->thumbnail }}" alt="{{ $p->name }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover" onerror="this.src='/IMAGE/SUPER.jpeg'">
   </div>
   <div class="prod-card-body">
    <h3 class="serif" style="font-size:17px;font-weight:700;color:#1A3D3A;margin-bottom:4px">{{ $p->name }}</h3>

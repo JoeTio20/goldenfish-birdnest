@@ -26,4 +26,4 @@ RUN php artisan migrate --force
 RUN php artisan db:seed --force
 
 EXPOSE 8000
-CMD ["sh", "-c", "php -S 0.0.0.0:$PORT -t public"]
+CMD ["sh", "-c", "php -S 0.0.0.0:$PORT -t public public/router.php"]

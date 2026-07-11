@@ -67,7 +67,7 @@
    <p style="font-size:14px;color:#4A6B6B;line-height:1.9;margin-bottom:28px">@lang('messages.master_p2')</p>
    <a href="{{ route('philosophy') }}" style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#0D3535;border-bottom:1.5px solid #C9A84C;padding-bottom:3px">@lang('messages.master_link') &rarr;</a>
   </div>
-  <div><img src="/IMAGE/PATAH BESAR.jpeg" alt="" style="width:100%;border-radius:14px;aspect-ratio:4/5;object-fit:cover;display:block"></div>
+  <div><img loading="lazy" decoding="async" src="/IMAGE/PATAH BESAR.jpeg" alt="" style="width:100%;border-radius:14px;aspect-ratio:4/5;object-fit:cover;display:block"></div>
  </div>
  </div>
 </section>
@@ -82,7 +82,7 @@
   @foreach($featuredProducts as $product)
   <div class="feat-card">
    <div style="aspect-ratio:1;overflow:hidden;background:#E8F0E8">
-    <img src="{{ $product->thumbnail }}" alt="{{ $product->name }}" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.src='/IMAGE/SUPER.jpeg'">
+    <img loading="lazy" decoding="async" src="{{ $product->thumbnail }}" alt="{{ $product->name }}" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.src='/IMAGE/SUPER.jpeg'">
    </div>
    <div style="padding:14px 14px 16px">
     <p style="font-weight:600;font-size:13px;color:#1A3D3A;margin-bottom:4px">{{ $product->name }}</p>
