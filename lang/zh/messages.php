@@ -4,8 +4,8 @@ return [
     'nav_philosophy' => '理念',
     'nav_product'    => '产品',
     'lang_switch'    => 'ZH',
-    'hero_label' => '天然燕窝',
-    'hero_title'  => '符合国际标准的优质天然燕窝。',
+    'hero_label' => '源自自然，品质为先',
+    'hero_title' => '每枚燕窝的纯粹',
     'hero_shop'  => '浏览产品',
     'hero_phil'  => '我们的理念',
     'master_title' => '源自自然的纯净',
@@ -68,4 +68,7 @@ return [
     'f_copyright' => '© 2026 燕窝。保留所有权利。',
     'f_global'    => '全球配送',
     'f_warranty'  => '优质品质保证',
+    'hero_desc' => '精心采摘自优质燕屋，以保持最佳品质。',
+    'about_label' => '关于我们',
+    'banner_label' => '立即下单',
 ];

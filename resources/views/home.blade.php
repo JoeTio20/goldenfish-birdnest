@@ -24,9 +24,9 @@
  <div style="position:absolute;inset:0;background-image:url('/IMAGE/SUPER.jpeg');background-size:cover;background-position:center;opacity:.5"></div>
  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,14,24,.78) 0%,rgba(8,14,24,.28) 50%,rgba(8,14,24,.82) 100%)"></div>
  <div style="position:relative;z-index:2;text-align:center;padding:0 24px;max-width:700px;margin:0 auto">
-  <p style="font-size:14px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:#C9A84C;margin-bottom:22px">Dari Alam untuk Kualitas</p>
-  <h1 class="serif" style="font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.08;color:#fff;font-weight:700;margin-bottom:24px">Kemurnian dalam<br>Setiap Sarang</h1>
-  <p style="font-size:15px;color:rgba(255,255,255,.58);max-width:440px;margin:0 auto 40px;line-height:1.9">Dipanen dengan penuh kehati-hatian dari sarang walet pilihan untuk menjaga kualitas terbaik.</p>
+  <p style="font-size:14px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:#C9A84C;margin-bottom:22px">@lang('messages.hero_label')</p>
+  <h1 class="serif" style="font-size:clamp(2.8rem,6vw,4.5rem);line-height:1.08;color:#fff;font-weight:700;margin-bottom:24px">@lang('messages.hero_title')</h1>
+  <p style="font-size:15px;color:rgba(255,255,255,.58);max-width:440px;margin:0 auto 40px;line-height:1.9">@lang('messages.hero_desc')</p>
   <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap">
    <a href="{{ route('product') }}" style="display:inline-block;padding:14px 32px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:100px;background:#C9A84C;color:#0D3535">@lang('messages.hero_shop')</a>
    <a href="{{ route('philosophy') }}" style="display:inline-block;padding:14px 32px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:100px;background:rgba(255,255,255,.09);color:#fff;border:1px solid rgba(255,255,255,.18)">@lang('messages.hero_phil')</a>
@@ -61,7 +61,7 @@
  <div style="max-width:1100px;margin:0 auto">
  <div class="about-grid">
   <div>
-   <p style="font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:#C9A84C;margin-bottom:14px">Tentang Kami</p>
+   <p style="font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:#C9A84C;margin-bottom:14px">@lang('messages.about_label')</p>
    <h2 class="serif" style="font-size:clamp(1.8rem,4vw,2.8rem);color:#1A3D3A;font-weight:700;line-height:1.15;margin-bottom:22px">@lang('messages.master_title')</h2>
    <p style="font-size:14px;color:#4A6B6B;line-height:1.9;margin-bottom:14px">@lang('messages.master_p1')</p>
    <p style="font-size:14px;color:#4A6B6B;line-height:1.9;margin-bottom:28px">@lang('messages.master_p2')</p>
@@ -105,7 +105,7 @@
  <div style="position:absolute;inset:0;background-image:url('/IMAGE/MANGKOK.jpeg');background-size:cover;background-position:center;opacity:.46"></div>
  <div style="position:absolute;inset:0;background:rgba(8,14,24,.72)"></div>
  <div style="position:relative;z-index:2;text-align:center;padding:0 24px;max-width:540px">
-  <p style="font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:#C9A84C;margin-bottom:16px">Pesan Sekarang</p>
+  <p style="font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:#C9A84C;margin-bottom:16px">@lang('messages.banner_label')</p>
   <h2 class="serif" style="font-size:clamp(1.8rem,4vw,3rem);color:#fff;font-weight:700;margin-bottom:24px">@lang('messages.banner_title')</h2>
   <a href="{{ route('product') }}" style="display:inline-block;padding:14px 36px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:100px;background:#C9A84C;color:#0D3535">@lang('messages.banner_cta')</a>
  </div>

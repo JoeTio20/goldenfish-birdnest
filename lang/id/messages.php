@@ -8,8 +8,8 @@ return [
     'lang_switch'    => 'EN',
 
     // HERO
-    'hero_label' => 'RAW EDIBLE BIRD NEST',
-    'hero_title' => 'Sarang Burung Walet Mentah Premium untuk Standar Internasional.',
+    'hero_label' => 'Dari Alam untuk Kualitas',
+    'hero_title' => 'Kemurnian dalam Setiap Sarang',
     'hero_shop'  => 'LIHAT PRODUK',
     'hero_phil'  => 'FILOSOFI KAMI',
 
@@ -131,4 +131,7 @@ return [
     'f_global' => 'Pengiriman Internasional',
     'f_warranty' => 'Kualitas Terjamin',
 
+    'hero_desc' => 'Dipanen dengan penuh kehati-hatian dari sarang walet pilihan untuk menjaga kualitas terbaik.',
+    'about_label' => 'Tentang Kami',
+    'banner_label' => 'Pesan Sekarang',
 ];

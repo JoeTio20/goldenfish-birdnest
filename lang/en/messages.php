@@ -8,8 +8,8 @@ return [
     'lang_switch'    => 'ID',
 
     // HERO
-    'hero_label' => 'RAW EDIBLE BIRD\'S NEST',
-    'hero_title' => 'Premium Raw Bird\'s Nest for International Standards.',
+    'hero_label' => 'From Nature, For Quality'S NEST',
+    'hero_title' => 'Purity in Every Nest's Nest for International Standards.',
     'hero_shop'  => 'EXPLORE PRODUCTS',
     'hero_phil'  => 'OUR PHILOSOPHY',
 
@@ -131,4 +131,7 @@ return [
     'f_global' => 'Worldwide Shipping',
     'f_warranty' => 'Premium Quality Assured',
 
+    'hero_desc' => 'Carefully harvested from selected swiftlet nests to maintain the highest quality.',
+    'about_label' => 'About Us',
+    'banner_label' => 'Order Now',
 ];
