@@ -2,7 +2,14 @@
 @section('title','Orders')
 @section('header','Daftar Pesanan')
 @section('content')
-<div class="flex justify-between items-center mb-6"><p class="text-sm" style="color:rgba(245,237,216,.4)"><?php echo e($orders->total()); ?> pesanan</p></div>
+<div class="flex justify-between items-center mb-6" style="gap:16px;flex-wrap:wrap">
+  <p class="text-sm" style="color:rgba(245,237,216,.4)"><?php echo e($orders->total()); ?> pesanan</p>
+  <form method="GET" action="<?php echo e(route('admin.orders.index')); ?>" style="display:flex;gap:8px;align-items:center">
+    <input type="text" name="search" value="<?php echo e($search ?? ''); ?>" placeholder="Cari nomor pesanan / customer..." style="width:260px;background:rgba(255,255,255,.05);border:1px solid rgba(107,174,214,.2);border-radius:8px;color:#D8E4ED;padding:9px 12px;font-size:12px;outline:none">
+    <button type="submit" style="padding:9px 14px;border-radius:8px;border:none;background:#6BAED6;color:#07111C;font-size:11px;font-weight:800;letter-spacing:.08em;cursor:pointer">CARI</button>
+    @if(($search ?? '') !== '')<a href="<?php echo e(route('admin.orders.index')); ?>" style="font-size:11px;color:rgba(216,228,237,.45);text-decoration:none">Reset</a>@endif
+  </form>
+</div>
 @if(session('success'))<div class="text-sm px-4 py-3 rounded-xl mb-4" style="background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);color:#6BAED6"><?php echo e(session('success')); ?></div>@endif
 <div class="rounded-2xl overflow-hidden" style="background:rgba(255,255,255,.03);border:1px solid rgba(245,237,216,.08)"><table class="w-full text-sm"><thead><tr style="border-bottom:1px solid rgba(245,237,216,.07)"><th class="px-4 py-3 text-left text-[10px] tracking-[.2em] uppercase font-semibold" style="color:rgba(245,237,216,.3)">No Pesanan</th><th class="px-4 py-3 text-left text-[10px] tracking-[.2em] uppercase font-semibold" style="color:rgba(245,237,216,.3)">Pelanggan</th><th class="px-4 py-3 text-left text-[10px] tracking-[.2em] uppercase font-semibold hidden md:table-cell" style="color:rgba(245,237,216,.3)">Total</th><th class="px-4 py-3 text-left text-[10px] tracking-[.2em] uppercase font-semibold">Status</th><th class="px-4 py-3 text-left text-[10px] tracking-[.2em] uppercase font-semibold hidden md:table-cell">Tanggal</th><th class="px-4 py-3"></th></tr></thead><tbody>
 @forelse($orders as $order)

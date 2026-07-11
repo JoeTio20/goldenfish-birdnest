@@ -182,4 +182,10 @@ return [
     'added_to_cart' => 'Ditambahkan ke keranjang!',
     'added_button' => '✓ DITAMBAHKAN!',
     'remove' => 'HAPUS',
+    'order_success_title' => 'Pesanan Berhasil!',
+    'order_success_desc' => 'Terima kasih, :name. Simpan nomor pesanan ini untuk tracking via WhatsApp.',
+    'order_number' => 'Nomor Pesanan',
+    'status' => 'Status',
+    'order_email_sent' => 'Detail pesanan juga dikirim ke email: :email',
+    'ask_status_whatsapp' => 'TANYA STATUS VIA WHATSAPP',
 ];

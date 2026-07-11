@@ -119,4 +119,10 @@ return [
     'added_to_cart' => '已加入购物车！',
     'added_button' => '✓ 已添加！',
     'remove' => '删除',
+    'order_success_title' => '订单成功！',
+    'order_success_desc' => '谢谢您，:name。请保存此订单号，以便通过 WhatsApp 查询订单状态。',
+    'order_number' => '订单号',
+    'status' => '状态',
+    'order_email_sent' => '订单详情也已发送至：:email',
+    'ask_status_whatsapp' => '通过 WhatsApp 查询状态',
 ];

@@ -182,4 +182,10 @@ return [
     'added_to_cart' => 'Added to cart!',
     'added_button' => '✓ ADDED!',
     'remove' => 'REMOVE',
+    'order_success_title' => 'Order Successful!',
+    'order_success_desc' => 'Thank you, :name. Save this order number to track your order via WhatsApp.',
+    'order_number' => 'Order Number',
+    'status' => 'Status',
+    'order_email_sent' => 'Order details have also been sent to: :email',
+    'ask_status_whatsapp' => 'ASK STATUS VIA WHATSAPP',
 ];
