@@ -21,11 +21,16 @@ class Product extends Model
         return $this->images[0] ?? '/IMAGE/SUPER.jpeg';
     }
 
+    public function getStockLabelKeyAttribute(): string
+    {
+        if (($this->stock ?? 0) <= 0) return 'stock_empty';
+        if ($this->stock <= 5) return 'stock_limited';
+        return 'stock_available';
+    }
+
     public function getStockLabelAttribute(): string
     {
-        if (($this->stock ?? 0) <= 0) return 'Stok Habis';
-        if ($this->stock <= 5) return 'Stok Terbatas';
-        return 'Stok Tersedia';
+        return __('messages.' . $this->stock_label_key);
     }
 
     public function getStockColorAttribute(): string

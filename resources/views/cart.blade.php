@@ -20,18 +20,18 @@
 <p style="font-size:11px;color:#4A6B6B;margin-bottom:20px">
  <a href="{{ route('home') }}" style="color:#4A6B6B">Home</a>
  <span style="margin:0 6px">&rsaquo;</span>
- <span style="color:#1A3D3A;font-weight:500">Keranjang Belanja</span>
+ <span style="color:#1A3D3A;font-weight:500"><?php echo e(__('messages.cart_breadcrumb')); ?></span>
 </p>
-<h1 class="serif" style="font-size:2rem;font-weight:700;color:#1A3D3A;margin-bottom:4px">Keranjang Kamu</h1>
-<p style="font-size:13px;color:#4A6B6B;margin-bottom:28px">Pilihan produk unggulan, siap dikirim.</p>
+<h1 class="serif" style="font-size:2rem;font-weight:700;color:#1A3D3A;margin-bottom:4px"><?php echo e(__('messages.cart_page_title')); ?></h1>
+<p style="font-size:13px;color:#4A6B6B;margin-bottom:28px"><?php echo e(__('messages.cart_page_subtitle')); ?></p>
 <div style="height:1px;background:rgba(200,168,76,.15);margin-bottom:28px"></div>
 
 @if(empty($cart))
 <div style="text-align:center;padding:80px 0">
  <svg width="52" height="52" fill="none" stroke="rgba(200,168,76,.5)" stroke-width="1.3" viewBox="0 0 24 24" style="margin:0 auto 20px;display:block"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
- <h2 class="serif" style="font-size:1.8rem;font-weight:700;color:#1A3D3A;margin-bottom:8px">Keranjang kosong</h2>
- <p style="font-size:13px;color:#4A6B6B;margin-bottom:28px">Temukan produk terbaik kami.</p>
- <a href="{{ route('product') }}" style="display:inline-block;padding:13px 32px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border-radius:100px;background:#0D3535;color:#fff">Lihat Produk</a>
+ <h2 class="serif" style="font-size:1.8rem;font-weight:700;color:#1A3D3A;margin-bottom:8px"><?php echo e(__('messages.cart_empty_title')); ?></h2>
+ <p style="font-size:13px;color:#4A6B6B;margin-bottom:28px"><?php echo e(__('messages.cart_empty_desc')); ?></p>
+ <a href="{{ route('product') }}" style="display:inline-block;padding:13px 32px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border-radius:100px;background:#0D3535;color:#fff"><?php echo e(__('messages.view_products')); ?></a>
 </div>
 @else
 <div class="cart-grid">
@@ -64,12 +64,12 @@
 </div>
 
 <div style="background:#fff;border:1px solid rgba(200,168,76,.18);border-radius:12px;padding:24px;position:sticky;top:80px">
- <h3 class="serif" style="font-size:1.2rem;font-weight:700;color:#1A3D3A;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid rgba(200,168,76,.12)">Ringkasan Pesanan</h3>
+ <h3 class="serif" style="font-size:1.2rem;font-weight:700;color:#1A3D3A;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid rgba(200,168,76,.12)"><?php echo e(__('messages.order_summary')); ?></h3>
  @php $subtotal = collect($cart)->sum(fn($i) => $i['price'] * $i['qty']); @endphp
- <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6B6B;margin-bottom:10px"><span>Subtotal</span><span>Rp {{ number_format($subtotal,0,',','.') }}</span></div>
- <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6B6B;margin-bottom:16px"><span>Ongkir</span><span style="color:#C9A84C">Dihitung saat checkout</span></div>
+ <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6B6B;margin-bottom:10px"><span><?php echo e(__('messages.subtotal')); ?></span><span>Rp {{ number_format($subtotal,0,',','.') }}</span></div>
+ <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6B6B;margin-bottom:16px"><span><?php echo e(__('messages.shipping')); ?></span><span style="color:#C9A84C"><?php echo e(__('messages.calculated_at_checkout')); ?></span></div>
  <div style="height:1px;background:rgba(200,168,76,.12);margin-bottom:16px"></div>
- <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:#1A3D3A;margin-bottom:20px"><span>Total</span><span>Rp {{ number_format($subtotal,0,',','.') }}</span></div>
+ <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:#1A3D3A;margin-bottom:20px"><span><?php echo e(__('messages.total')); ?></span><span>Rp {{ number_format($subtotal,0,',','.') }}</span></div>
  <a href="{{ route('checkout.index') }}" style="display:block;text-align:center;padding:14px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border-radius:100px;background:#0D3535;color:#fff;margin-bottom:10px" onmouseover="this.style.background='#C9A84C';this.style.color='#0D3535'" onmouseout="this.style.background='#0D3535';this.style.color='#fff'">Lanjut Checkout</a>
  <a href="{{ route('product') }}" style="display:block;text-align:center;padding:13px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:100px;border:1.5px solid rgba(13,53,53,.2);color:#1A3D3A">Lanjut Belanja</a>
  <p style="font-size:10px;color:#4A6B6B;text-align:center;margin-top:14px">&#x1F512; Transaksi dienkripsi SSL 256-bit</p>
