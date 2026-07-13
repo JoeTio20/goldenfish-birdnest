@@ -89,6 +89,7 @@ a{text-decoration:none}
      <a href="{{ route('home') }}" class="footer-link">@lang('messages.nav_home')</a>
      <a href="{{ route('philosophy') }}" class="footer-link">@lang('messages.nav_philosophy')</a>
      <a href="{{ route('product') }}" class="footer-link">@lang('messages.nav_product')</a>
+     <a href="<?php echo e(route('order.track')); ?>" class="footer-link">Track Order</a>
     </div>
    </div>
    <div>
