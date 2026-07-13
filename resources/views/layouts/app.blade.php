@@ -7,7 +7,7 @@
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="192x192" href="/favicon-192x192.png">
-<title>@yield('title','Goldenfishbirdnest')</title>
+<title>@yield('title','GOLDENFISHBIRDNEST')</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -41,7 +41,7 @@ a{text-decoration:none}
 <body>
 <nav id="snav">
  <div id="snav-inner">
-  <a href="{{ route('home') }}" class="snav-logo" style="display:flex;align-items:center;gap:10px"><img src="/IMAGE/logo.png" alt="Logo" style="height:38px;width:38px;object-fit:contain;border-radius:50%" onerror="this.style.display=none"><span>Sarang Burung</span></a>
+  <a href="{{ route('home') }}" class="snav-logo" style="display:flex;align-items:center;gap:10px"><img src="/IMAGE/logo.png" alt="Logo" style="height:38px;width:38px;object-fit:contain;border-radius:50%" onerror="this.style.display=none"><span>GOLDENFISHBIRDNEST</span></a>
   <div id="snav-links">
    <a href="{{ route('home') }}" class="snav-link {{ request()->routeIs('home') ? 'active' : '' }}">@lang('messages.nav_home')</a>
    <a href="{{ route('philosophy') }}" class="snav-link {{ request()->routeIs('philosophy') ? 'active' : '' }}">@lang('messages.nav_philosophy')</a>
@@ -80,28 +80,28 @@ a{text-decoration:none}
  <div style="max-width:1200px;margin:0 auto;padding:52px 24px 32px">
   <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:36px">
    <div>
-    <p class="serif" style="font-size:18px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#fff;margin-bottom:12px">Sarang Burung</p>
+    <p class="serif" style="font-size:18px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#fff;margin-bottom:12px">GOLDENFISHBIRDNEST</p>
     <p style="font-size:13px;color:rgba(255,255,255,.35);line-height:1.85;max-width:280px">@lang('messages.f_tagline')</p>
    </div>
    <div>
-    <p style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#C9A84C;margin-bottom:16px">Menu</p>
+    <p style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#C9A84C;margin-bottom:16px"><?php echo e(__('messages.footer_menu')); ?></p>
     <div style="display:flex;flex-direction:column;gap:10px">
      <a href="{{ route('home') }}" class="footer-link">@lang('messages.nav_home')</a>
      <a href="{{ route('philosophy') }}" class="footer-link">@lang('messages.nav_philosophy')</a>
      <a href="{{ route('product') }}" class="footer-link">@lang('messages.nav_product')</a>
-     <a href="<?php echo e(route('order.track')); ?>" class="footer-link">Track Order</a>
+     <a href="<?php echo e(route('order.track')); ?>" class="footer-link"><?php echo e(__('messages.track_order')); ?></a>
     </div>
    </div>
    <div>
-    <p style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#C9A84C;margin-bottom:16px">Kontak</p>
+    <p style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#C9A84C;margin-bottom:16px"><?php echo e(__('messages.footer_contact')); ?></p>
     <div style="display:flex;flex-direction:column;gap:10px">
      <a href="https://wa.me/6281234567890" class="footer-link">WhatsApp</a>
-     <a href="#" class="footer-link">Instagram</a>
+     <a href="https://www.instagram.com/goldenfishbirdnest/" target="_blank" rel="noopener" class="footer-link">Instagram</a>
     </div>
    </div>
   </div>
   <div style="border-top:1px solid rgba(255,255,255,.06);padding-top:20px;text-align:center">
-   <p style="font-size:11px;color:rgba(255,255,255,.2)">&copy; {{ date('Y') }} Sarang Burung. All rights reserved.</p>
+   <p style="font-size:11px;color:rgba(255,255,255,.2)">&copy; {{ date('Y') }} GOLDENFISHBIRDNEST. All rights reserved.</p>
   </div>
  </div>
 </footer>
@@ -129,9 +129,9 @@ a{text-decoration:none}
 
 <div id="cart-drawer-backdrop" class="cart-drawer-backdrop"></div>
 <aside id="cart-drawer" class="cart-drawer" aria-hidden="true">
- <div class="cart-drawer-head"><strong class="serif" style="font-size:22px;color:#1A3D3A">Keranjang</strong><button type="button" onclick="closeCartDrawer()" style="border:none;background:transparent;font-size:24px;cursor:pointer;color:#4A6B6B">&times;</button></div>
- <div id="cart-drawer-body" class="cart-drawer-body"><div style="text-align:center;padding:50px 10px;color:#4A6B6B">Tambahkan produk untuk melihat keranjang.</div></div>
- <div class="cart-drawer-foot"><div style="display:flex;justify-content:space-between;margin-bottom:14px;color:#1A3D3A"><strong>Total</strong><strong id="cart-drawer-total">Rp 0</strong></div><a href="<?php echo e(route('checkout.index')); ?>" class="drawer-btn" style="background:#0D3535;color:#fff;margin-bottom:10px">Checkout</a><a href="<?php echo e(route('cart.index')); ?>" class="drawer-btn" style="border:1px solid rgba(13,53,53,.18);color:#0D3535">Lihat Keranjang</a></div>
+ <div class="cart-drawer-head"><strong class="serif" style="font-size:22px;color:#1A3D3A"><?php echo e(__('messages.cart_drawer_title')); ?></strong><button type="button" onclick="closeCartDrawer()" style="border:none;background:transparent;font-size:24px;cursor:pointer;color:#4A6B6B">&times;</button></div>
+ <div id="cart-drawer-body" class="cart-drawer-body"><div style="text-align:center;padding:50px 10px;color:#4A6B6B"><?php echo e(__('messages.cart_drawer_empty')); ?></div></div>
+ <div class="cart-drawer-foot"><div style="display:flex;justify-content:space-between;margin-bottom:14px;color:#1A3D3A"><strong><?php echo e(__('messages.cart_drawer_total')); ?></strong><strong id="cart-drawer-total">Rp 0</strong></div><a href="<?php echo e(route('checkout.index')); ?>" class="drawer-btn" style="background:#0D3535;color:#fff;margin-bottom:10px"><?php echo e(__('messages.cart_drawer_checkout')); ?></a><a href="<?php echo e(route('cart.index')); ?>" class="drawer-btn" style="border:1px solid rgba(13,53,53,.18);color:#0D3535"><?php echo e(__('messages.cart_drawer_view_cart')); ?></a></div>
 </aside>
 <div id="quick-modal-backdrop" class="quick-modal-backdrop"></div>
 <div id="quick-modal" class="quick-modal" aria-hidden="true"><button type="button" class="quick-close" onclick="closeQuickModal()">&times;</button><div id="quick-modal-content"></div></div>
@@ -145,11 +145,11 @@ a{text-decoration:none}
 var toastTimer;
 
 function formatRupiah(n){return 'Rp '+Number(n||0).toLocaleString('id-ID');}
-function renderCartDrawer(cart){var body=document.getElementById('cart-drawer-body'),total=document.getElementById('cart-drawer-total');if(!body)return;var items=(cart&&cart.items)||[];total.textContent=(cart&&cart.subtotal_formatted)||'Rp 0';if(!items.length){body.innerHTML='<div style="text-align:center;padding:50px 10px;color:#4A6B6B">Keranjang masih kosong.</div>';return;}body.innerHTML=items.map(function(i){return '<div class="cart-drawer-item"><img src="'+(i.image||'/IMAGE/SUPER.jpeg')+'"><div style="flex:1"><p style="font-weight:700;color:#1A3D3A;margin-bottom:4px">'+i.name+'</p><p style="font-size:12px;color:#4A6B6B;margin-bottom:8px">'+i.qty+' x '+formatRupiah(i.price)+'</p><form method="POST" action="<?php echo e(route('cart.remove')); ?>"><input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>"><input type="hidden" name="product_id" value="'+i.id+'"><button style="border:none;background:transparent;color:#c0392b;font-size:11px;font-weight:700;cursor:pointer">HAPUS</button></form></div><strong style="color:#C9A84C;font-size:13px">'+formatRupiah(i.price*i.qty)+'</strong></div>'}).join('');}
+function renderCartDrawer(cart){var body=document.getElementById('cart-drawer-body'),total=document.getElementById('cart-drawer-total');if(!body)return;var items=(cart&&cart.items)||[];total.textContent=(cart&&cart.subtotal_formatted)||'Rp 0';if(!items.length){body.innerHTML='<div style="text-align:center;padding:50px 10px;color:#4A6B6B"><?php echo e(__('messages.cart_drawer_empty')); ?></div>';return;}body.innerHTML=items.map(function(i){return '<div class="cart-drawer-item"><img src="'+(i.image||'/IMAGE/SUPER.jpeg')+'"><div style="flex:1"><p style="font-weight:700;color:#1A3D3A;margin-bottom:4px">'+i.name+'</p><p style="font-size:12px;color:#4A6B6B;margin-bottom:8px">'+i.qty+' x '+formatRupiah(i.price)+'</p><form method="POST" action="<?php echo e(route('cart.remove')); ?>"><input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>"><input type="hidden" name="product_id" value="'+i.id+'"><button style="border:none;background:transparent;color:#c0392b;font-size:11px;font-weight:700;cursor:pointer">HAPUS</button></form></div><strong style="color:#C9A84C;font-size:13px">'+formatRupiah(i.price*i.qty)+'</strong></div>'}).join('');}
 function openCartDrawer(cart){if(cart)renderCartDrawer(cart);document.getElementById('cart-drawer').classList.add('open');document.getElementById('cart-drawer-backdrop').classList.add('open');}
 function closeCartDrawer(){document.getElementById('cart-drawer').classList.remove('open');document.getElementById('cart-drawer-backdrop').classList.remove('open');}
 function closeQuickModal(){document.getElementById('quick-modal').classList.remove('open');document.getElementById('quick-modal-backdrop').classList.remove('open');}
-function openQuickModal(product){var html='<div class="quick-grid"><img class="quick-img" src="'+(product.thumbnail||'/IMAGE/SUPER.jpeg')+'"><div class="quick-content"><p style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:10px">Quick View</p><h2 class="serif" style="font-size:34px;color:#1A3D3A;margin-bottom:10px">'+product.name+'</h2><p style="font-size:22px;font-weight:800;color:#C9A84C;margin-bottom:10px">'+product.price_formatted+'</p><p style="font-size:13px;font-weight:800;color:'+product.stock_color+';margin-bottom:16px">'+product.stock_label+(product.stock>0?' ('+product.stock+')':'')+'</p><p style="font-size:14px;color:#4A6B6B;line-height:1.8;margin-bottom:22px">'+(product.description||'')+'</p><form method="POST" action="<?php echo e(route('cart.add')); ?>"><input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>"><input type="hidden" name="product_id" value="'+product.id+'"><button type="submit" '+(product.stock<=0?'disabled':'')+' style="width:100%;padding:14px;border:none;border-radius:10px;background:'+(product.stock<=0?'#9ca3af':'#C9A84C')+';color:#0D3535;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;cursor:pointer">'+(product.stock<=0?'STOK HABIS':'TAMBAH KE KERANJANG')+'</button></form><a href="'+product.detail_url+'" style="display:block;text-align:center;margin-top:12px;color:#0D3535;font-size:12px;font-weight:800">Lihat detail lengkap</a></div></div>';document.getElementById('quick-modal-content').innerHTML=html;document.getElementById('quick-modal').classList.add('open');document.getElementById('quick-modal-backdrop').classList.add('open');}
+function openQuickModal(product){var html='<div class="quick-grid"><img class="quick-img" src="'+(product.thumbnail||'/IMAGE/SUPER.jpeg')+'"><div class="quick-content"><p style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:10px"><?php echo e(__('messages.quick_view')); ?></p><h2 class="serif" style="font-size:34px;color:#1A3D3A;margin-bottom:10px">'+product.name+'</h2><p style="font-size:22px;font-weight:800;color:#C9A84C;margin-bottom:10px">'+product.price_formatted+'</p><p style="font-size:13px;font-weight:800;color:'+product.stock_color+';margin-bottom:16px">'+product.stock_label+(product.stock>0?' ('+product.stock+')':'')+'</p><p style="font-size:14px;color:#4A6B6B;line-height:1.8;margin-bottom:22px">'+(product.description||'')+'</p><form method="POST" action="<?php echo e(route('cart.add')); ?>"><input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>"><input type="hidden" name="product_id" value="'+product.id+'"><button type="submit" '+(product.stock<=0?'disabled':'')+' style="width:100%;padding:14px;border:none;border-radius:10px;background:'+(product.stock<=0?'#9ca3af':'#C9A84C')+';color:#0D3535;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;cursor:pointer">'+(product.stock<=0?'<?php echo e(__('messages.stock_empty')); ?>':'<?php echo e(__('messages.add_cart')); ?>')+'</button></form><a href="'+product.detail_url+'" style="display:block;text-align:center;margin-top:12px;color:#0D3535;font-size:12px;font-weight:800"><?php echo e(__('messages.full_detail')); ?></a></div></div>';document.getElementById('quick-modal-content').innerHTML=html;document.getElementById('quick-modal').classList.add('open');document.getElementById('quick-modal-backdrop').classList.add('open');}
 
 function showToast(msg){
   var t=document.getElementById('cart-toast');
