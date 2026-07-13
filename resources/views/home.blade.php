@@ -21,7 +21,7 @@
 @section('content')
 
 <section style="position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden">
- <div style="position:absolute;inset:0;background-image:url('/IMAGE/SUPER.jpeg');background-size:cover;background-position:center;opacity:.5"></div>
+ <div style="position:absolute;inset:0;background-image:url('/IMAGE/optimized/SUPER.webp');background-size:cover;background-position:center;opacity:.5"></div>
  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(8,14,24,.78) 0%,rgba(8,14,24,.28) 50%,rgba(8,14,24,.82) 100%)"></div>
  <div style="position:relative;z-index:2;text-align:center;padding:0 24px;max-width:700px;margin:0 auto">
   <p style="font-size:14px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:#C9A84C;margin-bottom:22px">@lang('messages.hero_label')</p>
@@ -67,7 +67,7 @@
    <p style="font-size:14px;color:#4A6B6B;line-height:1.9;margin-bottom:28px">@lang('messages.master_p2')</p>
    <a href="{{ route('philosophy') }}" style="font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#0D3535;border-bottom:1.5px solid #C9A84C;padding-bottom:3px">@lang('messages.master_link') &rarr;</a>
   </div>
-  <div><img loading="lazy" decoding="async" src="/IMAGE/PATAH BESAR.jpeg" alt="" style="width:100%;border-radius:14px;aspect-ratio:4/5;object-fit:cover;display:block"></div>
+  <div><img loading="lazy" decoding="async" src="/IMAGE/optimized/PATAH BESAR.webp" alt="" style="width:100%;border-radius:14px;aspect-ratio:4/5;object-fit:cover;display:block"></div>
  </div>
  </div>
 </section>
@@ -82,7 +82,7 @@
   @foreach($featuredProducts as $product)
   <div class="feat-card">
    <div style="aspect-ratio:1;overflow:hidden;background:#E8F0E8">
-    <img loading="lazy" decoding="async" src="{{ $product->thumbnail }}" alt="{{ $product->name }}" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.src='/IMAGE/SUPER.jpeg'">
+    <img loading="lazy" decoding="async" src="{{ $product->thumbnail }}" alt="{{ $product->name }}" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.src='/IMAGE/optimized/SUPER.webp'">
    </div>
    <div style="padding:14px 14px 16px">
     <p style="font-weight:600;font-size:13px;color:#1A3D3A;margin-bottom:4px">{{ $product->name }}</p>
@@ -102,7 +102,7 @@
 </section>
 
 <section style="position:relative;min-height:400px;display:flex;align-items:center;justify-content:center;overflow:hidden">
- <div style="position:absolute;inset:0;background-image:url('/IMAGE/MANGKOK.jpeg');background-size:cover;background-position:center;opacity:.46"></div>
+ <div style="position:absolute;inset:0;background-image:url('/IMAGE/optimized/MANGKOK.webp');background-size:cover;background-position:center;opacity:.46"></div>
  <div style="position:absolute;inset:0;background:rgba(8,14,24,.72)"></div>
  <div style="position:relative;z-index:2;text-align:center;padding:0 24px;max-width:540px">
   <p style="font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:#C9A84C;margin-bottom:16px">@lang('messages.banner_label')</p>

@@ -8,6 +8,8 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="192x192" href="/favicon-192x192.png">
 <title>@yield('title','GOLDENFISHBIRDNEST')</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -32,6 +34,11 @@ a{text-decoration:none}
 #sfooter{background:#0D3535}
 .footer-link{font-size:11px;letter-spacing:.15em;text-transform:uppercase;font-weight:500;color:rgba(255,255,255,.38)}
 .footer-link:hover{color:#C9A84C}
+
+.mobile-lang-select{display:none;position:relative}.mobile-lang-btn{height:34px;min-width:42px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:transparent;color:#C9A84C;font-size:16px;display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer}.mobile-lang-menu{display:none;position:absolute;right:0;top:42px;background:#0D3535;border:1px solid rgba(200,168,76,.22);border-radius:14px;padding:6px;box-shadow:0 16px 40px rgba(0,0,0,.22);z-index:260}.mobile-lang-menu.open{display:flex;flex-direction:column;gap:4px}.mobile-lang-menu a{min-width:82px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:flex-start;gap:8px;padding:0 10px;font-size:13px;font-weight:700;letter-spacing:.08em;color:#fff;text-decoration:none}.mobile-lang-menu a .flag{font-size:18px;line-height:1}.mobile-lang-menu a .code{font-size:11px;text-transform:uppercase;color:rgba(255,255,255,.72)}.mobile-lang-menu a.active{background:rgba(201,168,76,.16)}
+@media(max-width:767px){.snav-logo span{display:none}.desktop-lang-pills{display:none!important}.mobile-lang-select{display:block}.admin-top-icon{display:none!important}.snav-logo img{height:42px!important;width:42px!important}#snav-right{gap:9px}.snav-icon svg{width:22px;height:22px}}
+@media(min-width:768px){.mobile-lang-select{display:none!important}.desktop-lang-pills{display:flex!important}}
+
 @media(max-width:767px){#snav-links{display:none}#hamburger{display:flex}#snav-inner{padding:0 16px}}
 @media(min-width:768px){#hamburger{display:none!important}#smobile-menu{display:none!important}}
 @media(max-width:599px){.footer-grid{grid-template-columns:1fr!important}}
@@ -48,19 +55,29 @@ a{text-decoration:none}
    <a href="{{ route('product') }}" class="snav-link {{ request()->routeIs('product') ? 'active' : '' }}">@lang('messages.nav_product')</a>
   </div>
   <div id="snav-right">
-   <div style="display:flex;gap:6px;align-items:center">
+   <div class="desktop-lang-pills" style="display:flex;gap:6px;align-items:center">
    <a href='/lang/id' class="lang-pill @if(app()->getLocale()==='id') active @endif" @if(app()->getLocale()==='id') style="border-color:#C9A84C;color:#C9A84C" @endif>ID</a>
    <a href='/lang/en' class="lang-pill @if(app()->getLocale()==='en') active @endif" @if(app()->getLocale()==='en') style="border-color:#C9A84C;color:#C9A84C" @endif>EN</a>
    <a href='/lang/zh' class="lang-pill @if(app()->getLocale()==='zh') active @endif" @if(app()->getLocale()==='zh') style="border-color:#C9A84C;color:#C9A84C" @endif>中文</a>
    </div>
-   <a href="{{ route('cart.index') }}" class="snav-icon js-cart-open" style="position:relative">
+   <div class="mobile-lang-select">
+    <button type="button" id="mobile-lang-btn" class="mobile-lang-btn" aria-label="Language" onclick="toggleMobileLang()">
+     @if(app()->getLocale()==='id') 🇮🇩 @elseif(app()->getLocale()==='en') 🇬🇧 @else 🇨🇳 @endif
+    </button>
+    <div id="mobile-lang-menu" class="mobile-lang-menu">
+     <a href="/lang/en" class="@if(app()->getLocale()==='en') active @endif" aria-label="English"><span class="flag">🇬🇧</span><span class="code">ENG</span></a>
+     <a href="/lang/id" class="@if(app()->getLocale()==='id') active @endif" aria-label="Indonesia"><span class="flag">🇮🇩</span><span class="code">ID</span></a>
+     <a href="/lang/zh" class="@if(app()->getLocale()==='zh') active @endif" aria-label="Chinese"><span class="flag">🇨🇳</span><span class="code">ZH</span></a>
+    </div>
+   </div>
+   <a href="{{ route('cart.index') }}" class="snav-icon js-cart-open" style="position:relative" aria-label="Open cart">
     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
     <span id="cart-badge" style="position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;background:#C9A84C;color:#0D3535;font-size:9px;font-weight:700;display:{{ (session('cart')&&count(session('cart'))) ? 'flex' : 'none' }};align-items:center;justify-content:center">{{ count(session('cart',[]) ) }}</span>
    </a>
-   <a href="/admin/login" class="snav-icon">
+   <a href="/admin/login" class="snav-icon admin-top-icon" aria-label="Admin login">
     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
    </a>
-   <button id="hamburger" onclick="(function(){var m=document.getElementById('smobile-menu');m.classList.toggle('open')})()">
+   <button id="hamburger" aria-label="Open menu" onclick="(function(){var m=document.getElementById('smobile-menu');m.classList.toggle('open')})()">
     <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
    </button>
   </div>
@@ -129,12 +146,12 @@ a{text-decoration:none}
 
 <div id="cart-drawer-backdrop" class="cart-drawer-backdrop"></div>
 <aside id="cart-drawer" class="cart-drawer" aria-hidden="true">
- <div class="cart-drawer-head"><strong class="serif" style="font-size:22px;color:#1A3D3A"><?php echo e(__('messages.cart_drawer_title')); ?></strong><button type="button" onclick="closeCartDrawer()" style="border:none;background:transparent;font-size:24px;cursor:pointer;color:#4A6B6B">&times;</button></div>
+ <div class="cart-drawer-head"><strong class="serif" style="font-size:22px;color:#1A3D3A"><?php echo e(__('messages.cart_drawer_title')); ?></strong><button type="button" aria-label="Close cart" onclick="closeCartDrawer()" style="border:none;background:transparent;font-size:24px;cursor:pointer;color:#4A6B6B">&times;</button></div>
  <div id="cart-drawer-body" class="cart-drawer-body"><div style="text-align:center;padding:50px 10px;color:#4A6B6B"><?php echo e(__('messages.cart_drawer_empty')); ?></div></div>
  <div class="cart-drawer-foot"><div style="display:flex;justify-content:space-between;margin-bottom:14px;color:#1A3D3A"><strong><?php echo e(__('messages.cart_drawer_total')); ?></strong><strong id="cart-drawer-total">Rp 0</strong></div><a href="<?php echo e(route('checkout.index')); ?>" class="drawer-btn" style="background:#0D3535;color:#fff;margin-bottom:10px"><?php echo e(__('messages.cart_drawer_checkout')); ?></a><a href="<?php echo e(route('cart.index')); ?>" class="drawer-btn" style="border:1px solid rgba(13,53,53,.18);color:#0D3535"><?php echo e(__('messages.cart_drawer_view_cart')); ?></a></div>
 </aside>
 <div id="quick-modal-backdrop" class="quick-modal-backdrop"></div>
-<div id="quick-modal" class="quick-modal" aria-hidden="true"><button type="button" class="quick-close" onclick="closeQuickModal()">&times;</button><div id="quick-modal-content"></div></div>
+<div id="quick-modal" class="quick-modal" aria-hidden="true"><button type="button" class="quick-close" aria-label="Close quick view" onclick="closeQuickModal()">&times;</button><div id="quick-modal-content"></div></div>
 
 <div id="cart-toast">
   <svg width="18" height="18" fill="none" stroke="#C9A84C" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -143,6 +160,8 @@ a{text-decoration:none}
 </div>
 <script>
 var toastTimer;
+function toggleMobileLang(){var m=document.getElementById('mobile-lang-menu'); if(m) m.classList.toggle('open');}
+document.addEventListener('click',function(e){var box=document.querySelector('.mobile-lang-select');var m=document.getElementById('mobile-lang-menu');if(box&&m&&!box.contains(e.target))m.classList.remove('open');});
 
 function formatRupiah(n){return 'Rp '+Number(n||0).toLocaleString('id-ID');}
 function renderCartDrawer(cart){var body=document.getElementById('cart-drawer-body'),total=document.getElementById('cart-drawer-total');if(!body)return;var items=(cart&&cart.items)||[];total.textContent=(cart&&cart.subtotal_formatted)||'Rp 0';if(!items.length){body.innerHTML='<div style="text-align:center;padding:50px 10px;color:#4A6B6B"><?php echo e(__('messages.cart_drawer_empty')); ?></div>';return;}body.innerHTML=items.map(function(i){return '<div class="cart-drawer-item"><img src="'+(i.image||'/IMAGE/SUPER.jpeg')+'"><div style="flex:1"><p style="font-weight:700;color:#1A3D3A;margin-bottom:4px">'+i.name+'</p><p style="font-size:12px;color:#4A6B6B;margin-bottom:8px">'+i.qty+' x '+formatRupiah(i.price)+'</p><form method="POST" action="<?php echo e(route('cart.remove')); ?>"><input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>"><input type="hidden" name="product_id" value="'+i.id+'"><button style="border:none;background:transparent;color:#c0392b;font-size:11px;font-weight:700;cursor:pointer">HAPUS</button></form></div><strong style="color:#C9A84C;font-size:13px">'+formatRupiah(i.price*i.qty)+'</strong></div>'}).join('');}

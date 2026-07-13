@@ -11,7 +11,7 @@
 @section('content')
 
 <section style="position:relative;height:55vh;min-height:300px;max-height:460px;display:flex;align-items:center;justify-content:center;overflow:hidden">
- <div style="position:absolute;inset:0;background-image:url('/IMAGE/SUPER.jpeg');background-size:cover;background-position:center;opacity:.4"></div>
+ <div style="position:absolute;inset:0;background-image:url('/IMAGE/optimized/SUPER.webp');background-size:cover;background-position:center;opacity:.4"></div>
  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,18,30,.8),rgba(10,18,30,.5) 50%,rgba(10,18,30,.85))"></div>
  <div style="position:relative;z-index:2;text-align:center;padding:0 20px;max-width:600px">
   <p style="font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:#C9A84C;margin:0 0 16px">@lang('messages.phil_label')</p>
@@ -29,7 +29,7 @@
    <p style="font-size:14px;color:#4A6B6B;line-height:1.95;margin:0 0 14px">@lang('messages.phil_p2')</p>
    <p style="font-size:14px;color:#4A6B6B;line-height:1.95;margin:0">@lang('messages.phil_p3')</p>
   </div>
-  <div><img loading="lazy" decoding="async" src="/IMAGE/INDONMMIE.jpeg" alt="" style="width:100%;border-radius:14px;aspect-ratio:4/5;object-fit:cover;display:block"></div>
+  <div><img loading="lazy" decoding="async" src="/IMAGE/optimized/INDONMMIE.webp" alt="" style="width:100%;border-radius:14px;aspect-ratio:4/5;object-fit:cover;display:block"></div>
  </div>
  </div>
 </section>
@@ -61,7 +61,7 @@
 </section>
 
 <section style="position:relative;min-height:320px;display:flex;align-items:center;justify-content:center;overflow:hidden">
- <div style="position:absolute;inset:0;background-image:url('/IMAGE/PATAH SAMBUNG.jpeg');background-size:cover;background-position:center;opacity:.4"></div>
+ <div style="position:absolute;inset:0;background-image:url('/IMAGE/optimized/PATAH SAMBUNG.webp');background-size:cover;background-position:center;opacity:.4"></div>
  <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,14,24,.9),rgba(10,18,30,.78))"></div>
  <div style="position:relative;z-index:2;text-align:center;padding:0 20px;max-width:520px">
   <p style="font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#C9A84C;margin:0 0 16px">@lang('messages.beauty_sub')</p>
