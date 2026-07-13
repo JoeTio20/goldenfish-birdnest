@@ -32,7 +32,42 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         abort_unless($product->is_active, 404);
+        $this->rememberViewedProduct($product->id);
         $related = Product::where('is_active', true)->where('id', '!=', $product->id)->inRandomOrder()->take(3)->get();
-        return view('product-detail', compact('product', 'related'));
+        $recentlyViewed = $this->recentlyViewedProducts($product->id);
+        return view('product-detail', compact('product', 'related', 'recentlyViewed'));
+    }
+
+    public function quick(Product $product)
+    {
+        abort_unless($product->is_active, 404);
+        return response()->json([
+            'id' => $product->id,
+            'name' => $product->name,
+            'description' => $product->description,
+            'price' => $product->price,
+            'price_formatted' => 'Rp ' . number_format($product->price, 0, ',', '.'),
+            'stock' => $product->stock,
+            'stock_label' => $product->stock_label,
+            'stock_color' => $product->stock_color,
+            'thumbnail' => $product->thumbnail,
+            'images' => $product->images ?: [$product->thumbnail],
+            'detail_url' => route('product.show', $product),
+        ]);
+    }
+
+    private function rememberViewedProduct(int $productId): void
+    {
+        $viewed = session('recently_viewed_products', []);
+        $viewed = array_values(array_filter($viewed, fn($id) => (int) $id !== $productId));
+        array_unshift($viewed, $productId);
+        session(['recently_viewed_products' => array_slice($viewed, 0, 8)]);
+    }
+
+    private function recentlyViewedProducts(int $excludeId)
+    {
+        $ids = array_values(array_filter(session('recently_viewed_products', []), fn($id) => (int) $id !== $excludeId));
+        if (empty($ids)) return collect();
+        return Product::where('is_active', true)->whereIn('id', $ids)->get()->sortBy(fn($p) => array_search($p->id, $ids))->values();
     }
 }

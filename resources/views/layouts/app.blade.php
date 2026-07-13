@@ -53,7 +53,7 @@ a{text-decoration:none}
    <a href='/lang/en' class="lang-pill @if(app()->getLocale()==='en') active @endif" @if(app()->getLocale()==='en') style="border-color:#C9A84C;color:#C9A84C" @endif>EN</a>
    <a href='/lang/zh' class="lang-pill @if(app()->getLocale()==='zh') active @endif" @if(app()->getLocale()==='zh') style="border-color:#C9A84C;color:#C9A84C" @endif>中文</a>
    </div>
-   <a href="{{ route('cart.index') }}" class="snav-icon" style="position:relative">
+   <a href="{{ route('cart.index') }}" class="snav-icon js-cart-open" style="position:relative">
     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
     <span id="cart-badge" style="position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;background:#C9A84C;color:#0D3535;font-size:9px;font-weight:700;display:{{ (session('cart')&&count(session('cart'))) ? 'flex' : 'none' }};align-items:center;justify-content:center">{{ count(session('cart',[]) ) }}</span>
    </a>
@@ -106,6 +106,9 @@ a{text-decoration:none}
 </footer>
 
 <style>
+
+.cart-drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:9997;opacity:0;pointer-events:none;transition:.25s ease}.cart-drawer-backdrop.open{opacity:1;pointer-events:auto}.cart-drawer{position:fixed;top:0;right:0;width:min(420px,92vw);height:100vh;background:#fff;z-index:9998;transform:translateX(105%);transition:transform .3s cubic-bezier(.2,.8,.2,1);box-shadow:-24px 0 60px rgba(0,0,0,.18);display:flex;flex-direction:column}.cart-drawer.open{transform:translateX(0)}.cart-drawer-head{padding:20px 22px;border-bottom:1px solid #EDE5DC;display:flex;justify-content:space-between;align-items:center}.cart-drawer-body{padding:18px 22px;overflow:auto;flex:1}.cart-drawer-item{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #F0E8DD}.cart-drawer-item img{width:64px;height:64px;object-fit:cover;border-radius:10px;background:#E8F0E8}.cart-drawer-foot{padding:18px 22px;border-top:1px solid #EDE5DC}.drawer-btn{width:100%;display:block;text-align:center;padding:13px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.quick-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.52);z-index:9995;opacity:0;pointer-events:none;transition:.25s}.quick-modal-backdrop.open{opacity:1;pointer-events:auto}.quick-modal{position:fixed;top:50%;left:50%;width:min(860px,92vw);max-height:88vh;overflow:auto;background:#fff;border-radius:18px;z-index:9996;transform:translate(-50%,-46%) scale(.98);opacity:0;pointer-events:none;transition:.25s;box-shadow:0 30px 90px rgba(0,0,0,.28)}.quick-modal.open{transform:translate(-50%,-50%) scale(1);opacity:1;pointer-events:auto}.quick-grid{display:grid;grid-template-columns:1fr 1fr}.quick-img{width:100%;height:100%;min-height:420px;object-fit:cover;background:#E8F0E8}.quick-content{padding:28px}.quick-close{position:absolute;right:14px;top:12px;width:36px;height:36px;border-radius:50%;border:none;background:rgba(13,53,53,.08);cursor:pointer}@media(max-width:720px){.quick-grid{grid-template-columns:1fr}.quick-img{min-height:260px}.quick-content{padding:22px}}
+
 #cart-toast{
   position:fixed;bottom:28px;right:28px;z-index:9999;
   background:#0D3535;color:#fff;
@@ -122,6 +125,16 @@ a{text-decoration:none}
 #cart-toast-close{margin-left:auto;background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer;font-size:16px;line-height:1;padding:0}
 #cart-toast-close:hover{color:#fff}
 </style>
+
+<div id="cart-drawer-backdrop" class="cart-drawer-backdrop"></div>
+<aside id="cart-drawer" class="cart-drawer" aria-hidden="true">
+ <div class="cart-drawer-head"><strong class="serif" style="font-size:22px;color:#1A3D3A">Keranjang</strong><button type="button" onclick="closeCartDrawer()" style="border:none;background:transparent;font-size:24px;cursor:pointer;color:#4A6B6B">&times;</button></div>
+ <div id="cart-drawer-body" class="cart-drawer-body"><div style="text-align:center;padding:50px 10px;color:#4A6B6B">Tambahkan produk untuk melihat keranjang.</div></div>
+ <div class="cart-drawer-foot"><div style="display:flex;justify-content:space-between;margin-bottom:14px;color:#1A3D3A"><strong>Total</strong><strong id="cart-drawer-total">Rp 0</strong></div><a href="<?php echo e(route('checkout.index')); ?>" class="drawer-btn" style="background:#0D3535;color:#fff;margin-bottom:10px">Checkout</a><a href="<?php echo e(route('cart.index')); ?>" class="drawer-btn" style="border:1px solid rgba(13,53,53,.18);color:#0D3535">Lihat Keranjang</a></div>
+</aside>
+<div id="quick-modal-backdrop" class="quick-modal-backdrop"></div>
+<div id="quick-modal" class="quick-modal" aria-hidden="true"><button type="button" class="quick-close" onclick="closeQuickModal()">&times;</button><div id="quick-modal-content"></div></div>
+
 <div id="cart-toast">
   <svg width="18" height="18" fill="none" stroke="#C9A84C" stroke-width="2" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
   <span id="cart-toast-msg"><?php echo e(__('messages.added_to_cart')); ?></span>
@@ -129,6 +142,14 @@ a{text-decoration:none}
 </div>
 <script>
 var toastTimer;
+
+function formatRupiah(n){return 'Rp '+Number(n||0).toLocaleString('id-ID');}
+function renderCartDrawer(cart){var body=document.getElementById('cart-drawer-body'),total=document.getElementById('cart-drawer-total');if(!body)return;var items=(cart&&cart.items)||[];total.textContent=(cart&&cart.subtotal_formatted)||'Rp 0';if(!items.length){body.innerHTML='<div style="text-align:center;padding:50px 10px;color:#4A6B6B">Keranjang masih kosong.</div>';return;}body.innerHTML=items.map(function(i){return '<div class="cart-drawer-item"><img src="'+(i.image||'/IMAGE/SUPER.jpeg')+'"><div style="flex:1"><p style="font-weight:700;color:#1A3D3A;margin-bottom:4px">'+i.name+'</p><p style="font-size:12px;color:#4A6B6B;margin-bottom:8px">'+i.qty+' x '+formatRupiah(i.price)+'</p><form method="POST" action="<?php echo e(route('cart.remove')); ?>"><input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>"><input type="hidden" name="product_id" value="'+i.id+'"><button style="border:none;background:transparent;color:#c0392b;font-size:11px;font-weight:700;cursor:pointer">HAPUS</button></form></div><strong style="color:#C9A84C;font-size:13px">'+formatRupiah(i.price*i.qty)+'</strong></div>'}).join('');}
+function openCartDrawer(cart){if(cart)renderCartDrawer(cart);document.getElementById('cart-drawer').classList.add('open');document.getElementById('cart-drawer-backdrop').classList.add('open');}
+function closeCartDrawer(){document.getElementById('cart-drawer').classList.remove('open');document.getElementById('cart-drawer-backdrop').classList.remove('open');}
+function closeQuickModal(){document.getElementById('quick-modal').classList.remove('open');document.getElementById('quick-modal-backdrop').classList.remove('open');}
+function openQuickModal(product){var html='<div class="quick-grid"><img class="quick-img" src="'+(product.thumbnail||'/IMAGE/SUPER.jpeg')+'"><div class="quick-content"><p style="font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:10px">Quick View</p><h2 class="serif" style="font-size:34px;color:#1A3D3A;margin-bottom:10px">'+product.name+'</h2><p style="font-size:22px;font-weight:800;color:#C9A84C;margin-bottom:10px">'+product.price_formatted+'</p><p style="font-size:13px;font-weight:800;color:'+product.stock_color+';margin-bottom:16px">'+product.stock_label+(product.stock>0?' ('+product.stock+')':'')+'</p><p style="font-size:14px;color:#4A6B6B;line-height:1.8;margin-bottom:22px">'+(product.description||'')+'</p><form method="POST" action="<?php echo e(route('cart.add')); ?>"><input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>"><input type="hidden" name="product_id" value="'+product.id+'"><button type="submit" '+(product.stock<=0?'disabled':'')+' style="width:100%;padding:14px;border:none;border-radius:10px;background:'+(product.stock<=0?'#9ca3af':'#C9A84C')+';color:#0D3535;font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;cursor:pointer">'+(product.stock<=0?'STOK HABIS':'TAMBAH KE KERANJANG')+'</button></form><a href="'+product.detail_url+'" style="display:block;text-align:center;margin-top:12px;color:#0D3535;font-size:12px;font-weight:800">Lihat detail lengkap</a></div></div>';document.getElementById('quick-modal-content').innerHTML=html;document.getElementById('quick-modal').classList.add('open');document.getElementById('quick-modal-backdrop').classList.add('open');}
+
 function showToast(msg){
   var t=document.getElementById('cart-toast');
   document.getElementById('cart-toast-msg').textContent=msg;
@@ -147,6 +168,10 @@ function updateCartBadge(count){
   });
 }
 document.addEventListener('DOMContentLoaded',function(){
+  var cb=document.getElementById('cart-drawer-backdrop'); if(cb) cb.addEventListener('click',closeCartDrawer);
+  var qb=document.getElementById('quick-modal-backdrop'); if(qb) qb.addEventListener('click',closeQuickModal);
+  document.querySelectorAll('.js-cart-open').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();openCartDrawer();});});
+  document.body.addEventListener('click',function(e){var btn=e.target.closest('.js-quick-view');if(!btn)return;e.preventDefault();fetch(btn.dataset.quickUrl,{headers:{'Accept':'application/json','X-Requested-With':'XMLHttpRequest'}}).then(function(r){return r.json()}).then(openQuickModal);});
   document.body.addEventListener('submit',function(e){
     var form=e.target;
     if(!form.querySelector('input[name="product_id"]')) return;
@@ -163,7 +188,7 @@ document.addEventListener('DOMContentLoaded',function(){
     .then(function(res){
               if(res.success){
         showToast(res.productName+' <?php echo e(strtolower(__('messages.added_to_cart'))); ?>');
-        updateCartBadge(res.cartCount);
+        updateCartBadge(res.cartCount); if(res.cart) openCartDrawer(res.cart);
         var btn=form.querySelector('button[type="submit"]');
         if(btn){
           var orig=btn.textContent;

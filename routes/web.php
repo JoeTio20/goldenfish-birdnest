@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\OrderTrackingController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminOrderController;
@@ -18,6 +19,7 @@ Route::get('/',           [HomeController::class,       'index'])->name('home');
 Route::get('/philosophy', [PhilosophyController::class, 'index'])->name('philosophy');
 Route::get('/product',    [ProductController::class,    'index'])->name('product');
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
+Route::get('/product/{product}/quick', [ProductController::class, 'quick'])->name('product.quick');
 
 Route::get('/cart',                  [CartController::class, 'index' ])->name('cart.index');
 Route::post('/cart/add',             [CartController::class, 'add'   ])->name('cart.add');
@@ -28,6 +30,8 @@ Route::post('/cart/clear',           [CartController::class, 'clear' ])->name('c
 Route::get('/checkout',              [CheckoutController::class, 'index'  ])->name('checkout.index');
 Route::post('/checkout',             [CheckoutController::class, 'store'  ])->name('checkout.store');
 Route::get('/checkout/success/{id}', [CheckoutController::class, 'success'])->name('checkout.success');
+Route::get('/track-order', [OrderTrackingController::class, 'index'])->name('order.track');
+Route::post('/track-order', [OrderTrackingController::class, 'search'])->name('order.track.search');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('login',   [AdminAuthController::class, 'showLogin'])->name('login');
@@ -41,11 +45,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('orders',                    [AdminOrderController::class, 'index'       ])->name('orders.index');
         Route::get('orders/{order}',             [AdminOrderController::class, 'show'        ])->name('orders.show');
         Route::patch('orders/{order}/status',    [AdminOrderController::class, 'updateStatus'])->name('orders.status');
-    });
-    Route::get('/reset-pw-temp', function() {
-        $user = \App\Models\Admin::first();
-        $user->password = bcrypt('joe123');
-        $user->save();
-        return 'Password berhasil diganti ke joe123!';
     });
 });
