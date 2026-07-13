@@ -154,4 +154,7 @@ return [
     'admin_products' => '产品',
     'admin_menu' => '菜单',
     'admin_logout' => '退出',
+    'whatsapp_country' => '国家/地区',
+    'whatsapp_phone' => 'WhatsApp号码',
+    'whatsapp_country_placeholder' => '选择国家/地区',
 ];

@@ -5,6 +5,7 @@
   .co-outer-grid{grid-template-columns:1fr!important;display:flex!important;flex-direction:column}
   .co-form-wrap{order:2}
   .co-summary-wrap{order:1;position:static!important;top:auto!important}
+  .wa-grid{grid-template-columns:1fr!important}
 }
 </style>
 @endsection
@@ -37,8 +38,33 @@
 
         <div style="margin-bottom:18px;">
           <label style="display:block;font-size:12px;color:#4A6B6B;margin-bottom:6px;"><?php echo e(__('messages.whatsapp_number')); ?></label>
-          <input type="text" name="whatsapp" value="{{ old('whatsapp') }}" placeholder="+62 812..." required
-                 style="width:100%;border:none;border-bottom:1.5px solid rgba(200,168,76,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1A3D3A;box-sizing:border-box;">
+          <div style="display:grid;grid-template-columns:minmax(170px,230px) 1fr;gap:12px;align-items:end" class="wa-grid">
+            <select name="whatsapp_country_code" required aria-label="<?php echo e(__('messages.whatsapp_country')); ?>" style="width:100%;border:none;border-bottom:1.5px solid rgba(200,168,76,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1A3D3A;box-sizing:border-box;">
+              @php $selectedCode = old('whatsapp_country_code', '+62'); @endphp
+              @foreach([
+                '+62' => '🇮🇩 Indonesia (+62)',
+                '+65' => '🇸🇬 Singapore (+65)',
+                '+60' => '🇲🇾 Malaysia (+60)',
+                '+86' => '🇨🇳 China (+86)',
+                '+852' => '🇭🇰 Hong Kong (+852)',
+                '+853' => '🇲🇴 Macau (+853)',
+                '+886' => '🇹🇼 Taiwan (+886)',
+                '+66' => '🇹🇭 Thailand (+66)',
+                '+84' => '🇻🇳 Vietnam (+84)',
+                '+63' => '🇵🇭 Philippines (+63)',
+                '+673' => '🇧🇳 Brunei (+673)',
+                '+81' => '🇯🇵 Japan (+81)',
+                '+82' => '🇰🇷 South Korea (+82)',
+                '+61' => '🇦🇺 Australia (+61)',
+                '+1' => '🇺🇸 USA / Canada (+1)',
+                '+44' => '🇬🇧 United Kingdom (+44)',
+              ] as $code => $label)
+                <option value="<?php echo e($code); ?>" <?php echo $selectedCode === $code ? 'selected' : ''; ?>><?php echo e($label); ?></option>
+              @endforeach
+            </select>
+            <input type="text" name="whatsapp" value="<?php echo e(old('whatsapp')); ?>" placeholder="812..." required aria-label="<?php echo e(__('messages.whatsapp_phone')); ?>"
+                   style="width:100%;border:none;border-bottom:1.5px solid rgba(200,168,76,.3);padding:8px 0;font-size:14px;background:transparent;outline:none;color:#1A3D3A;box-sizing:border-box;">
+          </div>
         </div>
         <div style="margin-bottom:18px;">
           <label style="display:block;font-size:12px;color:#4A6B6B;margin-bottom:6px;"><?php echo e(__('messages.email')); ?></label>

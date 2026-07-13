@@ -217,4 +217,7 @@ return [
     'admin_products' => 'Products',
     'admin_menu' => 'Menu',
     'admin_logout' => 'Logout',
+    'whatsapp_country' => 'Country',
+    'whatsapp_phone' => 'WhatsApp Number',
+    'whatsapp_country_placeholder' => 'Select country',
 ];
