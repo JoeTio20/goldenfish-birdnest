@@ -22,12 +22,27 @@ class OrderTrackingController extends Controller
         $number = trim($request->order_number);
         $contact = trim((string) $request->contact);
 
-        $query = Order::query();
-        if (Schema::hasColumn('orders', 'order_number')) {
-            $query->where('order_number', $number);
-        } else {
-            $query->whereRaw('1 = 0');
-        }
+        $query = Order::query()->where(function ($q) use ($number) {
+            if (Schema::hasColumn('orders', 'order_number')) {
+                $q->where('order_number', $number);
+            }
+
+            // Backward-compatible lookup for old orders whose order_number column is still empty.
+            // Admin/customer pages display fallback numbers like GBN-YYYYMMDD-0001, where 0001 is the order ID.
+            if (preg_match('/^GBN-(\d{8})-(\d{4,})$/i', $number, $matches)) {
+                $date = substr($matches[1], 0, 4) . '-' . substr($matches[1], 4, 2) . '-' . substr($matches[1], 6, 2);
+                $id = (int) $matches[2];
+                $q->orWhere(function ($fallback) use ($date, $id) {
+                    $fallback->where('id', $id)
+                             ->whereDate('created_at', $date);
+                    if (Schema::hasColumn('orders', 'order_number')) {
+                        $fallback->where(function ($emptyNumber) {
+                            $emptyNumber->whereNull('order_number')->orWhere('order_number', '');
+                        });
+                    }
+                });
+            }
+        });
 
         if ($contact !== '') {
             $query->where(function ($q) use ($contact) {
