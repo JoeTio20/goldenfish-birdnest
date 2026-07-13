@@ -166,7 +166,7 @@ return [
     'manual_bank_transfer' => 'Transfer Bank Manual',
     'subtotal' => 'Subtotal',
     'shipping' => 'Ongkir',
-    'calculated_at_checkout' => 'Dihitung saat checkout',
+    'calculated_at_checkout' => 'Dikonfirmasi via WhatsApp setelah order',
     'total' => 'Total',
     'home' => 'Beranda',
     'unit_pcs' => 'pcs',

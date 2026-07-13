@@ -67,12 +67,12 @@
  <h3 class="serif" style="font-size:1.2rem;font-weight:700;color:#1A3D3A;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid rgba(200,168,76,.12)"><?php echo e(__('messages.order_summary')); ?></h3>
  @php $subtotal = collect($cart)->sum(fn($i) => $i['price'] * $i['qty']); @endphp
  <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6B6B;margin-bottom:10px"><span><?php echo e(__('messages.subtotal')); ?></span><span>Rp {{ number_format($subtotal,0,',','.') }}</span></div>
- <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6B6B;margin-bottom:16px"><span><?php echo e(__('messages.shipping')); ?></span><span style="color:#C9A84C"><?php echo e(__('messages.calculated_at_checkout')); ?></span></div>
+ <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6B6B;margin-bottom:16px;gap:12px;align-items:flex-start"><span><?php echo e(__('messages.shipping')); ?></span><span style="color:#C9A84C;text-align:right;max-width:180px"><?php echo e(__('messages.calculated_at_checkout')); ?></span></div>
  <div style="height:1px;background:rgba(200,168,76,.12);margin-bottom:16px"></div>
  <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:#1A3D3A;margin-bottom:20px"><span><?php echo e(__('messages.total')); ?></span><span>Rp {{ number_format($subtotal,0,',','.') }}</span></div>
  <a href="{{ route('checkout.index') }}" style="display:block;text-align:center;padding:14px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;border-radius:100px;background:#0D3535;color:#fff;margin-bottom:10px" onmouseover="this.style.background='#C9A84C';this.style.color='#0D3535'" onmouseout="this.style.background='#0D3535';this.style.color='#fff'"><?php echo e(__('messages.continue_checkout')); ?></a>
  <a href="{{ route('product') }}" style="display:block;text-align:center;padding:13px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:100px;border:1.5px solid rgba(13,53,53,.2);color:#1A3D3A"><?php echo e(__('messages.continue_shopping')); ?></a>
- <p style="font-size:10px;color:#4A6B6B;text-align:center;margin-top:14px">&#x1F512; Transaksi dienkripsi SSL 256-bit</p>
+ <p style="font-size:10px;color:#4A6B6B;text-align:center;margin-top:14px">&#x1F512; <?php echo e(__('messages.ssl_secure')); ?></p>
 </div>
 
 </div>
@@ -94,7 +94,7 @@
    <p style="font-size:12px;color:#4A6B6B;margin-bottom:10px">Rp {{ number_format($p->price,0,',','.') }}</p>
    <form method="POST" action="{{ route('cart.add') }}">@csrf
    <input type="hidden" name="product_id" value="{{ $p->id }}">
-   <button type="submit" style="width:100%;padding:9px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#C9A84C;color:#0D3535;border:none;border-radius:8px;cursor:pointer">+ Keranjang</button>
+   <button type="submit" style="width:100%;padding:9px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#C9A84C;color:#0D3535;border:none;border-radius:8px;cursor:pointer"><?php echo e(__('messages.add_cart_short')); ?></button>
    </form>
   </div>
  </div>

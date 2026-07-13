@@ -103,7 +103,7 @@ return [
     'manual_bank_transfer' => '银行转账',
     'subtotal' => '小计',
     'shipping' => '运费',
-    'calculated_at_checkout' => '结账时计算',
+    'calculated_at_checkout' => '下单后通过 WhatsApp 确认',
     'total' => '总计',
     'home' => '首页',
     'unit_pcs' => '件',

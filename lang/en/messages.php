@@ -166,7 +166,7 @@ return [
     'manual_bank_transfer' => 'Manual Bank Transfer',
     'subtotal' => 'Subtotal',
     'shipping' => 'Shipping',
-    'calculated_at_checkout' => 'Calculated at checkout',
+    'calculated_at_checkout' => 'Confirmed via WhatsApp after ordering',
     'total' => 'Total',
     'home' => 'Home',
     'unit_pcs' => 'pcs',

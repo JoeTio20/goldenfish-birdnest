@@ -97,18 +97,18 @@
         </label>
 
         <div id="bank-info" style="display:none;background:rgba(200,168,76,.06);border:1.5px solid rgba(200,168,76,.2);border-radius:10px;padding:16px;margin-bottom:20px;">
-          <p style="font-size:12px;font-weight:600;color:#1A3D3A;margin-bottom:8px;">Transfer ke rekening:</p>
+          <p style="font-size:12px;font-weight:600;color:#1A3D3A;margin-bottom:8px;"><?php echo e(__('messages.transfer_to_account')); ?></p>
           <p style="font-size:13px;color:#4A6B6B;">Bank BCA</p>
           <p style="font-size:17px;font-weight:700;color:#1A3D3A;letter-spacing:.05em;">1234 5678 90</p>
           <p style="font-size:13px;color:#4A6B6B;">a.n. Sarang Burung Walet</p>
-          <p style="font-size:11px;color:#4A6B6B;margin-top:8px;">Konfirmasi pembayaran via WhatsApp setelah transfer.</p>
+          <p style="font-size:11px;color:#4A6B6B;margin-top:8px;"><?php echo e(__('messages.confirm_payment_whatsapp')); ?></p>
         </div>
 
         <button type="submit" style="display:inline-flex;align-items:center;gap:10px;background:#0D3535;color:#fff;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:16px 32px;border:none;cursor:pointer;">
           <?php echo e(__('messages.complete_order')); ?>
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         </button>
-        <p style="font-size:11px;color:#4A6B6B;margin-top:10px;">Transaksi dienkripsi SSL yang aman.</p>
+        <p style="font-size:11px;color:#4A6B6B;margin-top:10px;"><?php echo e(__('messages.ssl_secure_checkout')); ?></p>
       </div>
 
       <div class="co-summary-wrap" style="background:#fff;border:1.5px solid rgba(200,168,76,.2);border-radius:12px;padding:24px;position:sticky;top:80px;">
@@ -130,8 +130,8 @@
         <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6B6B;margin-bottom:8px;">
           <span><?php echo e(__('messages.subtotal')); ?></span><span>Rp {{ number_format($subtotal,0,',','.') }}</span>
         </div>
-        <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6B6B;margin-bottom:16px;">
-          <span><?php echo e(__('messages.shipping')); ?></span><span><?php echo e(__('messages.calculated_at_checkout')); ?></span>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#4A6B6B;margin-bottom:16px;gap:12px;align-items:flex-start;">
+          <span><?php echo e(__('messages.shipping')); ?></span><span style="text-align:right;max-width:190px;color:#C9A84C"><?php echo e(__('messages.calculated_at_checkout')); ?></span>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;color:#1A3D3A;">
           <span><?php echo e(__('messages.total')); ?></span><span>Rp {{ number_format($subtotal,0,',','.') }}</span>
@@ -143,12 +143,12 @@
 
 <script>
 document.querySelectorAll('input[name="payment_method"]').forEach(function(r){
-  r.addEventListener('change', function()
+  r.addEventListener('change', function(){
     var isTrans = this.value === 'transfer';
     document.getElementById('bank-info').style.display = isTrans ? 'block' : 'none';
     document.getElementById('lbl-midtrans').style.border = isTrans ? '1px solid #EDE5DC' : '1.5px solid #2C1810';
     document.getElementById('lbl-transfer').style.border = isTrans ? '1.5px solid #2C1810' : '1px solid #EDE5DC';
-  );
+  });
 });
 </script>
 @endsection
