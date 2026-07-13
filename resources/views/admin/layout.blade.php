@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="<?php echo e(app()->getLocale()); ?>">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>@yield('title','Admin')</title>
+<title>@yield('title', __('messages.admin_panel'))</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -30,26 +30,30 @@ body{background:#0C1928;font-family:'Inter',sans-serif;margin:0;color:#D8E4ED;ov
 <div id="mobile-topbar">
   <div class="flex items-center gap-2">
     <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background:#C9A84C"><svg width="13" height="13" fill="white" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-    <span class="serif text-[15px] font-bold text-white">Admin</span>
+    <span class="serif text-[15px] font-bold text-white"><?php echo e(__('messages.admin_panel')); ?></span>
   </div>
-  <form method="POST" action="{{ route('admin.logout') }}">@csrf<button type="submit" style="font-size:10px;font-weight:600;color:rgba(255,100,100,.8);text-transform:uppercase;letter-spacing:.1em;background:none;border:none;cursor:pointer">Logout</button></form>
+  <div style="display:flex;align-items:center;gap:12px"><a class="mobile-back-site" href="<?php echo e(route('home')); ?>" style="font-size:10px;font-weight:700;color:#C9A84C;text-transform:uppercase;letter-spacing:.08em"><?php echo e(__('messages.back_to_site')); ?></a><form method="POST" action="{{ route('admin.logout') }}">@csrf<button type="submit" style="font-size:10px;font-weight:600;color:rgba(255,100,100,.8);text-transform:uppercase;letter-spacing:.1em;background:none;border:none;cursor:pointer"><?php echo e(__('messages.admin_logout')); ?></button></form></div>
 </div>
 <div class="flex min-h-screen">
 <aside id="sidebar" class="flex-col">
   <div style="padding:20px;border-bottom:1px solid rgba(255,255,255,.06)">
-    <p class="serif" style="font-size:15px;font-weight:700;color:#fff;letter-spacing:.05em;margin:0 0 3px">Admin Panel</p>
+    <p class="serif" style="font-size:15px;font-weight:700;color:#fff;letter-spacing:.05em;margin:0 0 3px"><?php echo e(__('messages.admin_panel')); ?></p>
     <p style="font-size:11px;color:rgba(255,255,255,.25);margin:0">{{ session('admin_name','Admin') }} 👋</p>
   </div>
   <nav style="flex:1;padding:12px 0">
-    <p style="padding:0 20px;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.16);margin-bottom:8px">Menu</p>
+    <p style="padding:0 20px;font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.16);margin-bottom:8px"><?php echo e(__('messages.admin_menu')); ?></p>
+    <a href="<?php echo e(route('home')); ?>" class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg><?php echo e(__('messages.back_to_site')); ?>
+    </a>
+    <div style="height:1px;background:rgba(255,255,255,.06);margin:10px 12px"></div>
     <a href="{{ route('admin.dashboard') }}" class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-      <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Dashboard
+      <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><?php echo e(__('messages.admin_dashboard')); ?>
     </a>
     <a href="{{ route('admin.orders.index') }}" class="nav-item {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
-      <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Orders
+      <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg><?php echo e(__('messages.admin_orders')); ?>
     </a>
     <a href="{{ route('admin.products.index') }}" class="nav-item {{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
-      <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>Produk
+      <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg><?php echo e(__('messages.admin_products')); ?>
     </a>
   </nav>
   <div style="padding:12px;border-top:1px solid rgba(255,255,255,.06)">
@@ -57,7 +61,7 @@ body{background:#0C1928;font-family:'Inter',sans-serif;margin:0;color:#D8E4ED;ov
       <div style="width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:#C9A84C;color:#07111C;flex-shrink:0">{{ substr(session('admin_name','A'),0,1) }}</div>
       <div style="min-width:0;flex:1">
         <p style="font-size:12px;font-weight:600;color:#fff;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ session('admin_name','Admin') }}</p>
-        <form method="POST" action="{{ route('admin.logout') }}">@csrf<button type="submit" style="font-size:10px;color:rgba(255,100,100,.7);font-weight:600;text-transform:uppercase;letter-spacing:.05em;background:none;border:none;cursor:pointer;padding:0">Logout</button></form>
+        <form method="POST" action="{{ route('admin.logout') }}">@csrf<button type="submit" style="font-size:10px;color:rgba(255,100,100,.7);font-weight:600;text-transform:uppercase;letter-spacing:.05em;background:none;border:none;cursor:pointer;padding:0"><?php echo e(__('messages.admin_logout')); ?></button></form>
       </div>
     </div>
   </div>
@@ -80,13 +84,13 @@ body{background:#0C1928;font-family:'Inter',sans-serif;margin:0;color:#D8E4ED;ov
 </div>
 <nav id="bottom-nav">
   <a href="{{ route('admin.dashboard') }}" class="bnav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>HOME
+    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><?php echo e(__('messages.admin_dashboard')); ?>
   </a>
   <a href="{{ route('admin.orders.index') }}" class="bnav-item {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
-    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>ORDERS
+    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg><?php echo e(__('messages.admin_orders')); ?>
   </a>
   <a href="{{ route('admin.products.index') }}" class="bnav-item {{ request()->routeIs('admin.products.*') ? 'active' : '' }}">
-    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>PRODUK
+    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg><?php echo e(__('messages.admin_products')); ?>
   </a>
 </nav>
 @yield('scripts')
